@@ -1,0 +1,38 @@
+
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.leftSection {
+  display: flex;
+  gap: 10px;
+}
+
+.menuLogo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.mainText {
+  composes: text from global;
+  flex-grow: 0;
+}
+
+.mainTextDefault {
+  composes: text text_color_inactive from global;
+  flex-grow: 0;
+}
+
+.menuItem {
+  cursor: pointer;
+  display: flex;
+  text-align: center;
+  gap: 10px;
+  align-items: center;
+}
