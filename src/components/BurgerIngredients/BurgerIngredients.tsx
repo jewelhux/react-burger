@@ -1,10 +1,14 @@
-import { BurgerIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import styles from './BurgerIngredients.module.css';
+import ProductList from './ProductList/ProductList';
+import TabList from './TabList/TabList';
 
 const BurgerIngredients = () => {
   return (
-    <div>
-      <BurgerIcon type="primary"></BurgerIcon>
+    <div className={styles.mainContainer}>
+      <p className={styles.mainText}>Соберите бургер.</p>
+      <TabList></TabList>
+      <ProductList></ProductList>
     </div>
   );
 };

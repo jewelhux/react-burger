@@ -1,0 +1,25 @@
+.itemContainer {
+  position: relative;
+  width: 275px;
+  height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.itemImage img {
+  width: 100%;
+}
+
+.itemPrice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) { 
+  .itemContainer {
+    width: 200px;
+    height: 200px;
+  }
+}

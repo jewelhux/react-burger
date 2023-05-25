@@ -11,7 +11,7 @@ const AppHeader = () => {
   return (
     <header className={styles.header}>
       <div className={styles.leftSection}>
-        <div className={styles.menuItem}>
+        <div className={`${styles.menuItem}`}>
           <BurgerIcon type="primary"></BurgerIcon>
           <p className={styles.mainText}>Конструктор</p>
         </div>
@@ -23,7 +23,7 @@ const AppHeader = () => {
       <div className={styles.menuLogo}>
         <Logo />
       </div>
-      <div className={styles.menuItem}>
+      <div className={`${styles.rightSection} ${styles.menuItem}`}>
         <ProfileIcon type="secondary" />
         <p className={styles.mainTextDefault}>Личный кабинет</p>
       </div>

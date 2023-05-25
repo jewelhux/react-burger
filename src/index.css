@@ -2,3 +2,12 @@ body {
   font-family: 'Jet Brains Mono';
   margin: 0;
 }
+
+li {
+  list-style-type: none;
+}
+
+ul {
+  margin-left: 0;
+  padding-left: 0; 
+}
