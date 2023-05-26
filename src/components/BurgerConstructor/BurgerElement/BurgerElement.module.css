@@ -1,0 +1,9 @@
+@media (max-width: 600px) { 
+  .hide {
+    display: none;
+  }
+
+  .allStyle {
+    font-size: 10px;
+  }
+}

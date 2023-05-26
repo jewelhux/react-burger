@@ -1,0 +1,30 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.activeContainer {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 10px;
+  align-items: center;
+  overflow-y: scroll;
+  max-height: 600px;
+  composes: custom-scroll from global;
+}
+
+@media (max-width: 600px) { 
+  .mainContainer {
+    margin-top: 50px;
+  }
+  .activeContainer {
+    margin-right: 0;
+    margin-left: 15px;
+    padding-right: 5px;
+  }
+}
