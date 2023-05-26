@@ -1,7 +1,6 @@
 .itemContainer {
   position: relative;
   width: 275px;
-  height: 210px;
   display: flex;
   flex-direction: column;
   align-items: center;

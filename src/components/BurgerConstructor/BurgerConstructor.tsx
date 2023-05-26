@@ -2,11 +2,16 @@ import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-co
 import React from 'react';
 import ConstructorList from './ConstructorList/ConstructorList';
 import styles from './BurgerConstructor.module.css';
+import { IData } from '../../utils/interfaces';
 
-const BurgerConstructor = () => {
+interface IDataListProps {
+  dataList: IData[];
+}
+
+const BurgerConstructor = ({ dataList }: IDataListProps) => {
   return (
     <div className={styles.mainContainer}>
-      <ConstructorList></ConstructorList>
+      <ConstructorList dataList={dataList}></ConstructorList>
       <div className={styles.orderInfo}>
         <div className={styles.orederPrice}>
           <p className={styles.mainTextDefault}>12345</p>
