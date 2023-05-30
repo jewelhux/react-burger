@@ -1,14 +1,18 @@
 import React from 'react';
 import BurgerConstructor from '../../components/BurgerConstructor/BurgerConstructor';
 import BurgerIngredients from '../../components/BurgerIngredients/BurgerIngredients';
-import { MOCK_DATA } from '../../utils/DATA';
+import { IData } from '../../utils/interfaces';
 import styles from './MainPage.module.css';
 
-const MainPage = () => {
+interface IDataProps {
+  dataList: IData[];
+}
+
+const MainPage = ({ dataList }: IDataProps) => {
   return (
     <div className={styles.mainContainer}>
-      <BurgerIngredients dataList={MOCK_DATA}></BurgerIngredients>
-      <BurgerConstructor dataList={MOCK_DATA}></BurgerConstructor>
+      <BurgerIngredients dataList={dataList}></BurgerIngredients>
+      <BurgerConstructor dataList={dataList}></BurgerConstructor>
     </div>
   );
 };
