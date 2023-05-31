@@ -11,8 +11,8 @@ interface IDataProps {
 const MainPage = ({ dataList }: IDataProps) => {
   return (
     <div className={styles.mainContainer}>
-      <BurgerIngredients dataList={dataList}></BurgerIngredients>
-      <BurgerConstructor dataList={dataList}></BurgerConstructor>
+      <BurgerIngredients dataList={dataList} />
+      <BurgerConstructor dataList={dataList} />
     </div>
   );
 };

@@ -1,4 +1,5 @@
-import React, { ReactElement, ReactNode } from 'react';
+import React, { ReactElement, ReactNode, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import ModalOverlay from './ModalOverlay/ModalOverlay';
 import styles from './Modal.module.css';
 
@@ -9,7 +10,20 @@ interface IModalProps {
 }
 
 const Modal = ({ children, title, onClose }: IModalProps): ReactElement => {
-  return (
+  const modalRoot = document.getElementById('react-modals') as HTMLElement;
+
+  useEffect(() => {
+    const onClickEsc = (e: { key: string }) => {
+      if (e.key === 'Escape') onClose();
+    };
+
+    document.addEventListener('keydown', onClickEsc);
+    return () => {
+      document.removeEventListener('keydown', onClickEsc);
+    };
+  }, [onClose]);
+
+  return ReactDOM.createPortal(
     <>
       <div className={styles.content}>
         <div className={styles.contentHeader}>
@@ -18,8 +32,9 @@ const Modal = ({ children, title, onClose }: IModalProps): ReactElement => {
         </div>
         {children}
       </div>
-      <ModalOverlay></ModalOverlay>
-    </>
+      <ModalOverlay onClose={onClose} />
+    </>,
+    modalRoot
   );
 };
 

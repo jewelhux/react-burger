@@ -13,4 +13,8 @@ interface IData {
   __v: number;
 }
 
-export type { IData };
+interface IOrderData {
+  orderId: number;
+}
+
+export type { IData, IOrderData };

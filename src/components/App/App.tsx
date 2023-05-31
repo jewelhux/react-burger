@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import './App.css';
-import AppHeader from './components/AppHeader/AppHeader';
-import Loader from './components/Loader/Loader';
-import MainPage from './pages/MainPage/MainPage';
-import { DATA_ADRESS } from './utils/const';
+import styles from './App.module.css';
+import AppHeader from '../AppHeader/AppHeader';
+import Loader from '../Loader/Loader';
+import MainPage from '../../pages/MainPage/MainPage';
+import { DATA_ADRESS } from '../../utils/const';
 
 function App() {
   const [state, setState] = useState({
@@ -28,7 +28,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className={styles.app}>
       <AppHeader />
       {state.loading ? <Loader /> : <MainPage dataList={state.productData} />}
     </div>
