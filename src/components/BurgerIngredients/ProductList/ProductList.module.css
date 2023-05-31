@@ -1,0 +1,15 @@
+.mainContainer {
+  overflow-y: scroll;
+  max-height: 600px;
+  margin-top: 40px;
+  composes: custom-scroll from global;
+}
+
+.productGroup {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 25px;
+}

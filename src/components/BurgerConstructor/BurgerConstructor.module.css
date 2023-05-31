@@ -1,0 +1,37 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.orederPrice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.orderInfo {
+  padding: 0 80px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  gap: 30px;
+}
+
+.mainTextDefault {
+  composes: text text_type_digits-medium from global;
+}
+
+@media (max-width: 600px) { 
+  .mainContainer {
+    font-size: 12px;
+  }
+  .orderInfo {
+    flex-direction: column;
+    padding: 0;
+  }
+  .mainTextDefault {
+    font-size: 32px;
+  }
+}
