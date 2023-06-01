@@ -3,28 +3,17 @@ import styles from './App.module.css';
 import AppHeader from '../AppHeader/AppHeader';
 import Loader from '../Loader/Loader';
 import MainPage from '../../pages/MainPage/MainPage';
-import { DATA_ADRESS } from '../../utils/const';
-import { checkResponse } from '../../utils/burger-api';
+import { getProductData } from '../../utils/burger-api';
+import { IDataState } from '../../utils/interfaces';
 
 function App() {
-  const [state, setState] = useState({
+  const [state, setState] = useState<IDataState>({
     productData: [],
     loading: true,
   });
 
   useEffect(() => {
-    const getProductData = async () => {
-      setState((prevState) => ({ ...prevState, loading: true }));
-      try {
-        const res = await fetch(DATA_ADRESS).then(checkResponse);
-        setState({ productData: res.data, loading: false });
-      } catch (error) {
-        setState((prevState) => ({ ...prevState, loading: true }));
-        return new Error();
-      }
-    };
-
-    getProductData();
+    getProductData(setState);
   }, []);
 
   return (

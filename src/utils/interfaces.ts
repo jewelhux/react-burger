@@ -17,4 +17,9 @@ interface IOrderData {
   orderId: number;
 }
 
-export type { IData, IOrderData };
+interface IDataState {
+  productData: IData[];
+  loading: boolean;
+}
+
+export type { IData, IOrderData, IDataState };

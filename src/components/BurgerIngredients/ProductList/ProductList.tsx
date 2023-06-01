@@ -18,19 +18,19 @@ const ProductList = ({ dataList, onSelectIngredient }: IDataListProps) => {
       <h2>Булки</h2>
       <ul className={styles.productGroup}>
         {dataBun.map((item) => (
-          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient}></ProductItem>
+          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient} />
         ))}
       </ul>
       <h2>Соусы</h2>
       <ul className={styles.productGroup}>
         {dataSauce.map((item) => (
-          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient}></ProductItem>
+          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient} />
         ))}
       </ul>
       <h2>Начинки</h2>
       <ul className={styles.productGroup}>
         {dataMain.map((item) => (
-          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient}></ProductItem>
+          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient} />
         ))}
       </ul>
     </div>
