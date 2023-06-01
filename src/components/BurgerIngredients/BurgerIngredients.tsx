@@ -22,7 +22,7 @@ const BurgerIngredients = ({ dataList }: IDataListProps) => {
       <div className={styles.mainContainer}>
         <p className={styles.mainText}>Соберите бургер.</p>
         <TabList></TabList>
-        <ProductList dataList={dataList} onSelectIngredient={setIngredientInModal}></ProductList>
+        <ProductList productList={dataList} onSelectIngredient={setIngredientInModal}></ProductList>
       </div>
       {ingredientInModal && (
         <Modal onClose={closeIngredientModal} title={'Выберите ингридиенты'}>

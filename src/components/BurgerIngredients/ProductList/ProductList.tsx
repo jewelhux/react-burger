@@ -4,14 +4,17 @@ import ProductItem from '../ProductItem/ProductItem';
 import styles from './ProductList.module.css';
 
 interface IDataListProps {
-  dataList: IData[];
+  productList: IData[];
   onSelectIngredient: Dispatch<SetStateAction<IData | null>>;
 }
 
-const ProductList = ({ dataList, onSelectIngredient }: IDataListProps) => {
-  const dataMain = useMemo(() => dataList.filter((item) => item.type === 'main'), [dataList]);
-  const dataSauce = useMemo(() => dataList.filter((item) => item.type === 'sauce'), [dataList]);
-  const dataBun = useMemo(() => dataList.filter((item) => item.type === 'bun'), [dataList]);
+const ProductList = ({ productList, onSelectIngredient }: IDataListProps) => {
+  const dataMain = useMemo(() => productList.filter((item) => item.type === 'main'), [productList]);
+  const dataSauce = useMemo(
+    () => productList.filter((item) => item.type === 'sauce'),
+    [productList]
+  );
+  const dataBun = useMemo(() => productList.filter((item) => item.type === 'bun'), [productList]);
 
   return (
     <div className={styles.mainContainer}>
