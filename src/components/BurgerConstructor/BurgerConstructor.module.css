@@ -1,6 +1,8 @@
 .mainContainer {
   display: flex;
+  margin:  140px auto auto 0;
   flex-direction: column;
+  align-self: center;
   gap: 40px;
 }
 
@@ -21,6 +23,13 @@
 
 .mainTextDefault {
   composes: text text_type_digits-medium from global;
+}
+
+@media (max-width: 1300px) { 
+  .mainContainer {
+    margin:  80px auto auto auto;
+    align-self: center;
+  }
 }
 
 @media (max-width: 600px) { 

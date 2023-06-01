@@ -49,7 +49,7 @@
   }
 }
 
-@media (max-width: 1200px) { 
+@media (max-width: 1300px) { 
   .header {
     margin-top: 10px;
     display: flex;

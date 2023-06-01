@@ -1,7 +1,8 @@
 .mainContainer {
-  margin-top: 40px;
+  margin:  40px 0 auto auto;
   display: flex;
   flex-direction: column;
+  max-width: 640px;
 }
 
 .mainText {
@@ -9,8 +10,9 @@
   flex-grow: 0;
 }
 
-@media (max-width: 768px) { 
+@media (max-width: 1300px) { 
   .mainContainer {
+    margin:  40px auto auto auto;
     align-self: center;
   }
 }
