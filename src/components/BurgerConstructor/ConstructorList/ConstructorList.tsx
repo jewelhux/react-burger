@@ -23,7 +23,7 @@ const ConstructorList = ({ dataList }: IDataListProps) => {
       />
       <div className={styles.activeContainer}>
         {dataNotBul.map((item) => (
-          <ConstructorItem dataItem={item} key={item._id}></ConstructorItem>
+          <ConstructorItem dataItem={item} key={item._id} />
         ))}
       </div>
       <BurgerElement

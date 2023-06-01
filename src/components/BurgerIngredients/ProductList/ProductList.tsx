@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useMemo } from 'react';
 import { IData } from '../../../utils/interfaces';
 import ProductItem from '../ProductItem/ProductItem';
 import styles from './ProductList.module.css';
@@ -9,9 +9,9 @@ interface IDataListProps {
 }
 
 const ProductList = ({ dataList, onSelectIngredient }: IDataListProps) => {
-  const dataMain = dataList.filter((item) => item.type === 'main');
-  const dataSauce = dataList.filter((item) => item.type === 'sauce');
-  const dataBun = dataList.filter((item) => item.type === 'bun');
+  const dataMain = useMemo(() => dataList.filter((item) => item.type === 'main'), [dataList]);
+  const dataSauce = useMemo(() => dataList.filter((item) => item.type === 'sauce'), [dataList]);
+  const dataBun = useMemo(() => dataList.filter((item) => item.type === 'bun'), [dataList]);
 
   return (
     <div className={styles.mainContainer}>

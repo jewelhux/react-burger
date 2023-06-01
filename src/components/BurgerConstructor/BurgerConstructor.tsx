@@ -25,7 +25,7 @@ const BurgerConstructor = ({ dataList }: IDataListProps) => {
   return (
     <>
       <div className={styles.mainContainer}>
-        <ConstructorList dataList={dataList}></ConstructorList>
+        <ConstructorList dataList={dataList} />
         <div className={styles.orderInfo}>
           <div className={styles.orederPrice}>
             <p className={styles.mainTextDefault}>12345</p>
