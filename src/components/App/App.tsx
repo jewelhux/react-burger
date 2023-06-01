@@ -4,6 +4,7 @@ import AppHeader from '../AppHeader/AppHeader';
 import Loader from '../Loader/Loader';
 import MainPage from '../../pages/MainPage/MainPage';
 import { DATA_ADRESS } from '../../utils/const';
+import { checkResponse } from '../../utils/burger-api';
 
 function App() {
   const [state, setState] = useState({
@@ -15,9 +16,8 @@ function App() {
     const getProductData = async () => {
       setState((prevState) => ({ ...prevState, loading: true }));
       try {
-        const res = await fetch(DATA_ADRESS);
-        const productList = await res.json();
-        setState({ productData: productList.data, loading: false });
+        const res = await fetch(DATA_ADRESS).then(checkResponse);
+        setState({ productData: res.data, loading: false });
       } catch (error) {
         setState((prevState) => ({ ...prevState, loading: true }));
         return new Error();

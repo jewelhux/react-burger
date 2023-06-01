@@ -30,4 +30,4 @@ const ProductItem = ({ dataItem, onClick }: IDataItemProps) => {
   );
 };
 
-export default ProductItem;
+export default React.memo(ProductItem);
