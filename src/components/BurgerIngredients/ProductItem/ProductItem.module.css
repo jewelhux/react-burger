@@ -4,6 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.itemContainer p {
+  margin: 0;
 }
 
 .itemImage img {
@@ -19,6 +25,5 @@
 @media (max-width: 768px) { 
   .itemContainer {
     width: 200px;
-    height: 200px;
   }
 }

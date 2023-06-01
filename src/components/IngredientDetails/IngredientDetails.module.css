@@ -1,0 +1,24 @@
+.contentMainImage img {
+  width: 100%;
+}
+
+.contentMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contentListInfo {
+  composes: text text_color_inactive from global;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+@media (max-width: 768px) { 
+  .content {
+    padding: 10px;
+  }
+}

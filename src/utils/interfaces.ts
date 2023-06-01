@@ -13,4 +13,13 @@ interface IData {
   __v: number;
 }
 
-export type { IData };
+interface IOrderData {
+  orderId: number;
+}
+
+interface IDataState {
+  productData: IData[];
+  loading: boolean;
+}
+
+export type { IData, IOrderData, IDataState };
