@@ -2,16 +2,11 @@ import { Button, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-co
 import React, { useState } from 'react';
 import ConstructorList from './ConstructorList/ConstructorList';
 import styles from './BurgerConstructor.module.css';
-import { IData } from '../../utils/interfaces';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { OREDER_MOCK_DATA } from '../../utils/const';
 
-interface IDataListProps {
-  dataList: IData[];
-}
-
-const BurgerConstructor = ({ dataList }: IDataListProps) => {
+const BurgerConstructor = () => {
   const [constructorInModal, setIngredientInModal] = useState(false);
 
   const closeConstructorModal = () => {
@@ -25,7 +20,7 @@ const BurgerConstructor = ({ dataList }: IDataListProps) => {
   return (
     <>
       <div className={styles.mainContainer}>
-        <ConstructorList dataList={dataList} />
+        <ConstructorList />
         <div className={styles.orderInfo}>
           <div className={styles.orederPrice}>
             <p className={styles.mainTextDefault}>12345</p>

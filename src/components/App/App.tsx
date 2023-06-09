@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import styles from './App.module.css';
 import AppHeader from '../AppHeader/AppHeader';
 import Loader from '../Loader/Loader';
 import MainPage from '../../pages/MainPage/MainPage';
-import { getProductData } from '../../utils/burger-api';
-import { IDataState } from '../../utils/interfaces';
+import { fetchIngredients } from '../../store/actions/actions';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 
 function App() {
-  const [state, setState] = useState<IDataState>({
-    productData: [],
-    loading: true,
-  });
+  const allIngredients = useAppSelector((state) => state.allIngredients);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    getProductData(setState);
-  }, []);
+    dispatch(fetchIngredients());
+  }, [dispatch]);
 
   return (
     <div className={styles.app}>
       <AppHeader />
-      {state.loading ? <Loader /> : <MainPage dataList={state.productData} />}
+      {allIngredients.loading ? <Loader /> : <MainPage />}
     </div>
   );
 }

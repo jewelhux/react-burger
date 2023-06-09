@@ -1,16 +1,17 @@
 import React from 'react';
-import { IData } from '../../../utils/interfaces';
+import { useAppSelector } from '../../../store/store';
 import { BurgerElement } from '../BurgerElement/BurgerElement';
 import ConstructorItem from '../ConstructorItem/ConstructorItem';
 import styles from './ConstructorList.module.css';
 
-interface IDataListProps {
-  dataList: IData[];
-}
+const ConstructorList = () => {
+  const allIngredients = useAppSelector((state) => state.allIngredients);
+  const dataBun = allIngredients.ingredients.filter((item) => item.type === 'bun');
+  const dataNotBul = allIngredients.ingredients.filter((item) => item.type !== 'bun');
 
-const ConstructorList = ({ dataList }: IDataListProps) => {
-  const dataBun = dataList.filter((item) => item.type === 'bun');
-  const dataNotBul = dataList.filter((item) => item.type !== 'bun');
+  if (allIngredients.ingredients.length === 0) {
+    return <div className={styles.mainContainer}>Список пуст</div>;
+  }
 
   return (
     <div className={styles.mainContainer}>

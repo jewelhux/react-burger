@@ -6,11 +6,7 @@ import styles from './BurgerIngredients.module.css';
 import ProductList from './ProductList/ProductList';
 import TabList from './TabList/TabList';
 
-interface IDataListProps {
-  dataList: IData[];
-}
-
-const BurgerIngredients = ({ dataList }: IDataListProps) => {
+const BurgerIngredients = () => {
   const [ingredientInModal, setIngredientInModal] = useState<IData | null>(null);
 
   const closeIngredientModal = () => {
@@ -22,7 +18,7 @@ const BurgerIngredients = ({ dataList }: IDataListProps) => {
       <div className={styles.mainContainer}>
         <p className={styles.mainText}>Соберите бургер.</p>
         <TabList></TabList>
-        <ProductList productList={dataList} onSelectIngredient={setIngredientInModal}></ProductList>
+        <ProductList onSelectIngredient={setIngredientInModal}></ProductList>
       </div>
       {ingredientInModal && (
         <Modal onClose={closeIngredientModal} title={'Выберите ингридиенты'}>
