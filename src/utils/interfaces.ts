@@ -13,6 +13,10 @@ interface IData {
   __v: number;
 }
 
+interface IExtData extends IData {
+  key: string;
+}
+
 interface IOrderData {
   orderId: number;
 }
@@ -22,4 +26,4 @@ interface IDataState {
   loading: boolean;
 }
 
-export type { IData, IOrderData, IDataState };
+export type { IData, IOrderData, IDataState, IExtData };

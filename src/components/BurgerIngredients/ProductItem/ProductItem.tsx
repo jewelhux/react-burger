@@ -1,5 +1,9 @@
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import {
+  addIngredientsCurrentBurger,
+  setBun,
+} from '../../../store/slice/allIngredientsCurrentBurgerSlice';
 import { setIngredient } from '../../../store/slice/currentIngredientSlice';
 import { useAppDispatch } from '../../../store/store';
 import { IData } from '../../../utils/interfaces';
@@ -11,9 +15,15 @@ interface IDataItemProps {
 
 const ProductItem = ({ dataItem }: IDataItemProps) => {
   const dispatch = useAppDispatch();
+  const isBun = dataItem.type === 'bun' ? true : false;
 
   const handleOpenPopup = () => {
     dispatch(setIngredient(dataItem));
+    if (isBun) {
+      dispatch(setBun(dataItem));
+    } else {
+      dispatch(addIngredientsCurrentBurger(dataItem));
+    }
   };
 
   return (

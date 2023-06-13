@@ -1,10 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
-import type { PayloadAction } from '@reduxjs/toolkit';
-import { IData } from '../../utils/interfaces';
+import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
+import { IData, IExtData } from '../../utils/interfaces';
 
 interface ISlice {
   bun: IData | null;
-  ingredients: IData[];
+  ingredients: IExtData[];
 }
 
 const initialState: ISlice = {
@@ -16,12 +15,27 @@ export const allIngredientsCurrentBurgerSlice = createSlice({
   name: 'allIngredientsCurrentBurger',
   initialState,
   reducers: {
-    setBun: (state, action: PayloadAction<IData | null>) => {
+    setBun: (state, action: PayloadAction<IData>) => {
       state.bun = action.payload;
+    },
+    addIngredientsCurrentBurger: {
+      reducer: (state, action: PayloadAction<IExtData>) => {
+        if (action.payload) {
+          state.ingredients.push(action.payload);
+        }
+      },
+      prepare: (ingredient: IData): { payload: IExtData } => {
+        const key = nanoid();
+        return { payload: { key, ...ingredient } };
+      },
+    },
+    deleteIngredientsCurrentBurger: (state, action: PayloadAction<IExtData>) => {
+      state.ingredients = state.ingredients.filter((item) => item.key !== action.payload.key);
     },
   },
 });
 
-export const { setBun } = allIngredientsCurrentBurgerSlice.actions;
+export const { setBun, addIngredientsCurrentBurger, deleteIngredientsCurrentBurger } =
+  allIngredientsCurrentBurgerSlice.actions;
 
 export default allIngredientsCurrentBurgerSlice.reducer;

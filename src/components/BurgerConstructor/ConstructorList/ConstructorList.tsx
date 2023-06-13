@@ -1,39 +1,50 @@
 import React from 'react';
 import { useAppSelector } from '../../../store/store';
+import BlankContructorBun from '../BlankContructorBun/BlankContructorBun';
+import BlankContructorIngredient from '../BlankContructorIngredient/BlankContructorIngredient';
 import { BurgerElement } from '../BurgerElement/BurgerElement';
 import ConstructorItem from '../ConstructorItem/ConstructorItem';
 import styles from './ConstructorList.module.css';
 
 const ConstructorList = () => {
-  const allIngredients = useAppSelector((state) => state.allIngredients);
-  const dataBun = allIngredients.ingredients.filter((item) => item.type === 'bun');
-  const dataNotBul = allIngredients.ingredients.filter((item) => item.type !== 'bun');
-
-  if (allIngredients.ingredients.length === 0) {
-    return <div className={styles.mainContainer}>Список пуст</div>;
-  }
+  const allIngredientsCurrentBurger = useAppSelector(
+    (state) => state.allIngredientsCurrentBurger.ingredients
+  );
+  const currentBurgerBun = useAppSelector((state) => state.allIngredientsCurrentBurger.bun);
 
   return (
     <div className={styles.mainContainer}>
-      <BurgerElement
-        type="top"
-        isLocked={true}
-        text={`${dataBun[0].name} (верх)`}
-        price={dataBun[0].price}
-        thumbnail={dataBun[0].image}
-      />
-      <div className={styles.activeContainer}>
-        {dataNotBul.map((item) => (
-          <ConstructorItem dataItem={item} key={item._id} />
-        ))}
-      </div>
-      <BurgerElement
-        type="bottom"
-        isLocked={true}
-        text={`${dataBun[0].name} (низ)`}
-        price={dataBun[0].price}
-        thumbnail={dataBun[0].image}
-      />
+      {currentBurgerBun ? (
+        <BurgerElement
+          type="top"
+          isLocked={true}
+          text={`${currentBurgerBun.name} (верх)`}
+          price={currentBurgerBun.price}
+          thumbnail={currentBurgerBun.image}
+        />
+      ) : (
+        <BlankContructorBun />
+      )}
+      {allIngredientsCurrentBurger.length ? (
+        <div className={styles.activeContainer}>
+          {allIngredientsCurrentBurger.map((item) => (
+            <ConstructorItem dataItem={item} key={item.key} />
+          ))}
+        </div>
+      ) : (
+        <BlankContructorIngredient />
+      )}
+      {currentBurgerBun ? (
+        <BurgerElement
+          type="bottom"
+          isLocked={true}
+          text={`${currentBurgerBun.name} (низ)`}
+          price={currentBurgerBun.price}
+          thumbnail={currentBurgerBun.image}
+        />
+      ) : (
+        <BlankContructorBun />
+      )}
     </div>
   );
 };
