@@ -4,12 +4,13 @@ import ConstructorList from './ConstructorList/ConstructorList';
 import styles from './BurgerConstructor.module.css';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import { OREDER_MOCK_DATA } from '../../utils/const';
-import { useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { IExtData } from '../../utils/interfaces';
+import { placeOrder } from '../../store/actions/actions';
 
 const BurgerConstructor = () => {
   const [constructorInModal, setIngredientInModal] = useState(false);
+  const dispatch = useAppDispatch();
   const burgersData = useAppSelector((state) => state.allIngredientsCurrentBurger);
 
   const totalPrice = useMemo(() => {
@@ -30,6 +31,12 @@ const BurgerConstructor = () => {
   };
 
   const openConstructorModal = () => {
+    const bunId = burgersData.bun?._id;
+    const ingredientsId = burgersData.ingredients.map((item) => item._id);
+
+    if (bunId) ingredientsId.push(bunId);
+
+    dispatch(placeOrder(ingredientsId));
     setIngredientInModal(true);
   };
 
@@ -49,7 +56,7 @@ const BurgerConstructor = () => {
       </div>
       {constructorInModal && (
         <Modal onClose={closeConstructorModal} title={''}>
-          <OrderDetails orderData={OREDER_MOCK_DATA} />
+          <OrderDetails />
         </Modal>
       )}
     </>

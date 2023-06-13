@@ -26,4 +26,10 @@ interface IDataState {
   loading: boolean;
 }
 
-export type { IData, IOrderData, IDataState, IExtData };
+interface IOrder {
+  name: string;
+  order: { number: number };
+  succes: boolean;
+}
+
+export type { IData, IOrderData, IDataState, IExtData, IOrder };
