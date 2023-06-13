@@ -25,11 +25,9 @@ export const allIngredientsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchIngredients.pending, (state) => {
-      console.log('pending');
       state.loading = true;
     });
     builder.addCase(fetchIngredients.fulfilled, (state, action) => {
-      console.log('fulfilled');
       state.ingredients = action.payload.data;
       state.loading = false;
     });

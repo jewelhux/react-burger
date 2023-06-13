@@ -15,7 +15,7 @@ const OrderDetails = ({ orderData }: IOrderDetailsProps) => {
         <h3>идентификатор заказа</h3>
       </div>
       <div className={styles.orderImage}>
-        <img src={doneImagePath}></img>
+        <img src={doneImagePath} />
       </div>
       <div>
         <p>Ваш заказ начали готовить</p>

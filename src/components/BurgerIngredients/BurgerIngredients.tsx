@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { IData } from '../../utils/interfaces';
+import React from 'react';
+import { setIngredient } from '../../store/slice/currentIngredientSlice';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
 import styles from './BurgerIngredients.module.css';
@@ -7,22 +8,23 @@ import ProductList from './ProductList/ProductList';
 import TabList from './TabList/TabList';
 
 const BurgerIngredients = () => {
-  const [ingredientInModal, setIngredientInModal] = useState<IData | null>(null);
+  const currentIngredient = useAppSelector((state) => state.currentIngredient);
+  const dispatch = useAppDispatch();
 
   const closeIngredientModal = () => {
-    setIngredientInModal(null);
+    dispatch(setIngredient(null));
   };
 
   return (
     <>
       <div className={styles.mainContainer}>
         <p className={styles.mainText}>Соберите бургер.</p>
-        <TabList></TabList>
-        <ProductList onSelectIngredient={setIngredientInModal}></ProductList>
+        <TabList />
+        <ProductList />
       </div>
-      {ingredientInModal && (
+      {currentIngredient.ingredient && (
         <Modal onClose={closeIngredientModal} title={'Выберите ингридиенты'}>
-          <IngredientDetails item={ingredientInModal} />
+          <IngredientDetails item={currentIngredient.ingredient} />
         </Modal>
       )}
     </>

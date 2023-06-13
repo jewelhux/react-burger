@@ -1,14 +1,9 @@
-import React, { Dispatch, SetStateAction, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { useAppSelector } from '../../../store/store';
-import { IData } from '../../../utils/interfaces';
 import ProductItem from '../ProductItem/ProductItem';
 import styles from './ProductList.module.css';
 
-interface IDataListProps {
-  onSelectIngredient: Dispatch<SetStateAction<IData | null>>;
-}
-
-const ProductList = ({ onSelectIngredient }: IDataListProps) => {
+const ProductList = () => {
   const allIngredients = useAppSelector((state) => state.allIngredients);
 
   const dataMain = useMemo(
@@ -33,19 +28,19 @@ const ProductList = ({ onSelectIngredient }: IDataListProps) => {
       <h2>Булки</h2>
       <ul className={styles.productGroup}>
         {dataBun.map((item) => (
-          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient} />
+          <ProductItem dataItem={item} key={item._id} />
         ))}
       </ul>
       <h2>Соусы</h2>
       <ul className={styles.productGroup}>
         {dataSauce.map((item) => (
-          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient} />
+          <ProductItem dataItem={item} key={item._id} />
         ))}
       </ul>
       <h2>Начинки</h2>
       <ul className={styles.productGroup}>
         {dataMain.map((item) => (
-          <ProductItem dataItem={item} key={item._id} onClick={onSelectIngredient} />
+          <ProductItem dataItem={item} key={item._id} />
         ))}
       </ul>
     </div>

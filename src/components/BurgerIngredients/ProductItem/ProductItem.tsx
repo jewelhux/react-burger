@@ -1,16 +1,19 @@
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
+import { setIngredient } from '../../../store/slice/currentIngredientSlice';
+import { useAppDispatch } from '../../../store/store';
 import { IData } from '../../../utils/interfaces';
 import styles from './ProductItem.module.css';
 
 interface IDataItemProps {
   dataItem: IData;
-  onClick: Dispatch<SetStateAction<IData | null>>;
 }
 
-const ProductItem = ({ dataItem, onClick }: IDataItemProps) => {
+const ProductItem = ({ dataItem }: IDataItemProps) => {
+  const dispatch = useAppDispatch();
+
   const handleOpenPopup = () => {
-    onClick(dataItem);
+    dispatch(setIngredient(dataItem));
   };
 
   return (
