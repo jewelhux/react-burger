@@ -7,6 +7,7 @@
 
 .activeContainer {
   width: 100%;
+  max-width: 536px;
   display: flex;
   flex-direction: column;
   gap: 10px;
