@@ -4,8 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../store/store';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
 import styles from './BurgerIngredients.module.css';
-import ProductList from './ProductList/ProductList';
-import TabList from './TabList/TabList';
+import ProductListContainer from './ProductListContainer/ProductListContainer';
 
 const BurgerIngredients = () => {
   const currentIngredient = useAppSelector((state) => state.currentIngredient);
@@ -19,8 +18,7 @@ const BurgerIngredients = () => {
     <>
       <div className={styles.mainContainer}>
         <p className={styles.mainText}>Соберите бургер.</p>
-        <TabList />
-        <ProductList />
+        <ProductListContainer />
       </div>
       {currentIngredient.ingredient && (
         <Modal onClose={closeIngredientModal} title={'Выберите ингридиенты'}>

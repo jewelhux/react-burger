@@ -1,0 +1,32 @@
+.mainContainer {
+  overflow-y: scroll;
+  max-height: 680px;
+  margin-top: 40px;
+  composes: custom-scroll from global;
+}
+
+.productGroup {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 25px;
+}
+
+.activeGroup {
+  background-color: red;
+}
+
+.tabsContainer {
+  display: flex;
+  margin-top: 28px;
+  align-self: center;
+}
+
+@media (max-width: 768px) { 
+  .tabsContainer {
+    flex-direction: column;
+    align-self: center;
+  }
+}
