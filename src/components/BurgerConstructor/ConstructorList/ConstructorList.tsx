@@ -4,16 +4,26 @@ import BlankContructorBun from '../BlankContructorBun/BlankContructorBun';
 import BlankContructorIngredient from '../BlankContructorIngredient/BlankContructorIngredient';
 import { BurgerElement } from '../BurgerElement/BurgerElement';
 import ConstructorItem from '../ConstructorItem/ConstructorItem';
+import { useDrop } from 'react-dnd';
 import styles from './ConstructorList.module.css';
+import { ITEM_DND_TYPE } from '../../../utils/const';
 
 const ConstructorList = () => {
   const allIngredientsCurrentBurger = useAppSelector(
     (state) => state.allIngredientsCurrentBurger.ingredients
   );
   const currentBurgerBun = useAppSelector((state) => state.allIngredientsCurrentBurger.bun);
+  const [, drop] = useDrop(() => ({
+    accept: ITEM_DND_TYPE.BOX,
+    drop: () => ({ name: 'Dustbin' }),
+    collect: (monitor) => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  }));
 
   return (
-    <div className={styles.mainContainer}>
+    <div className={styles.mainContainer} ref={drop}>
       {currentBurgerBun ? (
         <BurgerElement
           type="top"

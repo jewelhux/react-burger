@@ -4,4 +4,8 @@ const OREDER_MOCK_DATA = {
   orderId: 1337,
 };
 
-export { DATA_ADRESS, OREDER_MOCK_DATA };
+const ITEM_DND_TYPE = {
+  BOX: 'box',
+};
+
+export { DATA_ADRESS, OREDER_MOCK_DATA, ITEM_DND_TYPE };
