@@ -21,7 +21,7 @@ const ConstructorItem = ({ dataItem, indexElement }: IDataItemProps) => {
   const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
-    accept: ITEM_DND_TYPE.BOX,
+    accept: ITEM_DND_TYPE.SORT,
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
@@ -52,7 +52,7 @@ const ConstructorItem = ({ dataItem, indexElement }: IDataItemProps) => {
   });
 
   const [, drag] = useDrag({
-    type: ITEM_DND_TYPE.BOX,
+    type: ITEM_DND_TYPE.SORT,
     item: () => {
       return { index: indexElement };
     },
