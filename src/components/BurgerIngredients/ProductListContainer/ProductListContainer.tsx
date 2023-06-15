@@ -1,6 +1,6 @@
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import React, { useMemo, useRef, useState } from 'react';
-import { useAppSelector } from '../../../store/store';
+import { useAppSelector } from '../../../services/store';
 import IngredientCategory from '../ProductList/IngredientCategory';
 import styles from './ProductListContainer.module.css';
 

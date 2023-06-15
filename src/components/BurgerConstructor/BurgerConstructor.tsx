@@ -4,9 +4,9 @@ import ConstructorList from './ConstructorList/ConstructorList';
 import styles from './BurgerConstructor.module.css';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../services/store';
 import { IExtData } from '../../utils/interfaces';
-import { placeOrder } from '../../store/actions/actions';
+import { placeOrder } from '../../services/actions/actions';
 
 const BurgerConstructor = () => {
   const [constructorInModal, setIngredientInModal] = useState(false);

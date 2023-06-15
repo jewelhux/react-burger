@@ -3,8 +3,8 @@ import React, { useRef } from 'react';
 import {
   moveIngredientsCurrentBurger,
   deleteIngredientsCurrentBurger,
-} from '../../../store/slice/allIngredientsCurrentBurgerSlice';
-import { useAppDispatch } from '../../../store/store';
+} from '../../../services/slice/allIngredientsCurrentBurgerSlice';
+import { useAppDispatch } from '../../../services/store';
 import { ITEM_DND_TYPE } from '../../../utils/const';
 import { DragItem, IExtData } from '../../../utils/interfaces';
 import { BurgerElement } from '../BurgerElement/BurgerElement';
@@ -48,7 +48,6 @@ const ConstructorItem = ({ dataItem, indexElement }: IDataItemProps) => {
       }
       item.index = hoverIndex;
       dispatch(moveIngredientsCurrentBurger({ fromIndex: dragIndex, toIndex: hoverIndex }));
-      console.log(dragIndex, hoverIndex);
     },
   });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAppSelector } from '../../../store/store';
+import { useAppSelector } from '../../../services/store';
 import BlankContructorBun from '../BlankContructorBun/BlankContructorBun';
 import BlankContructorIngredient from '../BlankContructorIngredient/BlankContructorIngredient';
 import { BurgerElement } from '../BurgerElement/BurgerElement';

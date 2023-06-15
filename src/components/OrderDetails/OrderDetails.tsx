@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './OrderDetails.module.css';
 import doneImagePath from '../../images/done.svg';
-import { useAppSelector } from '../../store/store';
+import { useAppSelector } from '../../services/store';
 import Loader from '../Loader/Loader';
 
 const OrderDetails = () => {

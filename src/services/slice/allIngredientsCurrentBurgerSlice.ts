@@ -33,13 +33,11 @@ export const allIngredientsCurrentBurgerSlice = createSlice({
       state.ingredients = state.ingredients.filter((item) => item.key !== action.payload.key);
     },
     moveIngredientsCurrentBurger: (state, action: PayloadAction<IChangePositionIngredients>) => {
-      const ingredients = [...state.ingredients];
-      ingredients.splice(
+      state.ingredients.splice(
         action.payload.toIndex,
         0,
-        ingredients.splice(action.payload.fromIndex, 1)[0]
+        state.ingredients.splice(action.payload.fromIndex, 1)[0]
       );
-      state.ingredients = ingredients;
     },
   },
 });

@@ -1,6 +1,6 @@
 import React from 'react';
-import { setIngredient } from '../../store/slice/currentIngredientSlice';
-import { useAppDispatch, useAppSelector } from '../../store/store';
+import { setIngredient } from '../../services/slice/currentIngredientSlice';
+import { useAppDispatch, useAppSelector } from '../../services/store';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import Modal from '../Modal/Modal';
 import styles from './BurgerIngredients.module.css';

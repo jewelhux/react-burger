@@ -3,9 +3,9 @@ import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-c
 import {
   addIngredientsCurrentBurger,
   setBun,
-} from '../../../store/slice/allIngredientsCurrentBurgerSlice';
-import { setIngredient } from '../../../store/slice/currentIngredientSlice';
-import { useAppDispatch, useAppSelector } from '../../../store/store';
+} from '../../../services/slice/allIngredientsCurrentBurgerSlice';
+import { setIngredient } from '../../../services/slice/currentIngredientSlice';
+import { useAppDispatch, useAppSelector } from '../../../services/store';
 import { IData } from '../../../utils/interfaces';
 import { useDrag } from 'react-dnd';
 import styles from './ProductItem.module.css';
