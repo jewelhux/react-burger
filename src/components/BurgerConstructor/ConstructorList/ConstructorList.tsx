@@ -37,8 +37,8 @@ const ConstructorList = () => {
       )}
       {allIngredientsCurrentBurger.length ? (
         <div className={styles.activeContainer}>
-          {allIngredientsCurrentBurger.map((item) => (
-            <ConstructorItem dataItem={item} key={item.key} />
+          {allIngredientsCurrentBurger.map((item, index) => (
+            <ConstructorItem indexElement={index} dataItem={item} key={item.key} />
           ))}
         </div>
       ) : (

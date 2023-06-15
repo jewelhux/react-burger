@@ -32,4 +32,23 @@ interface IOrder {
   succes: boolean;
 }
 
-export type { IData, IOrderData, IDataState, IExtData, IOrder };
+interface IChangePositionIngredients {
+  fromIndex: number;
+  toIndex: number;
+}
+
+interface DragItem {
+  index: number;
+  id: string;
+  type: string;
+}
+
+export type {
+  IData,
+  IOrderData,
+  IDataState,
+  IExtData,
+  IOrder,
+  IChangePositionIngredients,
+  DragItem,
+};

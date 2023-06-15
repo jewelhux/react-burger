@@ -1,5 +1,5 @@
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
-import { IData, IExtData } from '../../utils/interfaces';
+import { IChangePositionIngredients, IData, IExtData } from '../../utils/interfaces';
 
 interface ISlice {
   bun: IData | null;
@@ -32,10 +32,23 @@ export const allIngredientsCurrentBurgerSlice = createSlice({
     deleteIngredientsCurrentBurger: (state, action: PayloadAction<IExtData>) => {
       state.ingredients = state.ingredients.filter((item) => item.key !== action.payload.key);
     },
+    moveIngredientsCurrentBurger: (state, action: PayloadAction<IChangePositionIngredients>) => {
+      const ingredients = [...state.ingredients];
+      ingredients.splice(
+        action.payload.toIndex,
+        0,
+        ingredients.splice(action.payload.fromIndex, 1)[0]
+      );
+      state.ingredients = ingredients;
+    },
   },
 });
 
-export const { setBun, addIngredientsCurrentBurger, deleteIngredientsCurrentBurger } =
-  allIngredientsCurrentBurgerSlice.actions;
+export const {
+  setBun,
+  addIngredientsCurrentBurger,
+  deleteIngredientsCurrentBurger,
+  moveIngredientsCurrentBurger,
+} = allIngredientsCurrentBurgerSlice.actions;
 
 export default allIngredientsCurrentBurgerSlice.reducer;
