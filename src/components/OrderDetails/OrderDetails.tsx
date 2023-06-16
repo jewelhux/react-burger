@@ -1,27 +1,33 @@
 import React from 'react';
-import { IOrderData } from '../../utils/interfaces';
 import styles from './OrderDetails.module.css';
 import doneImagePath from '../../images/done.svg';
+import { useAppSelector } from '../../services/store';
+import Loader from '../Loader/Loader';
 
-interface IOrderDetailsProps {
-  orderData: IOrderData;
-}
+const OrderDetails = () => {
+  const currentOrder = useAppSelector((state) => state.currentOrder);
 
-const OrderDetails = ({ orderData }: IOrderDetailsProps) => {
   return (
-    <div className={styles.orderContainer}>
-      <div>
-        <h2 className={styles.orderNumber}>{orderData.orderId}</h2>
-        <h3>идентификатор заказа</h3>
-      </div>
-      <div className={styles.orderImage}>
-        <img src={doneImagePath}></img>
-      </div>
-      <div>
-        <p>Ваш заказ начали готовить</p>
-        <p className={styles.textInactive}>Дождитесь готовности на орбитальной станции</p>
-      </div>
-    </div>
+    <>
+      {currentOrder.loading ? (
+        <Loader />
+      ) : (
+        <div className={styles.orderContainer}>
+          <div>
+            <h2>{currentOrder.order?.name}</h2>
+            <h3>идентификатор заказа</h3>
+            <h2 className={styles.orderNumber}>{currentOrder.order?.order.number}</h2>
+          </div>
+          <div className={styles.orderImage}>
+            <img src={doneImagePath} />
+          </div>
+          <div>
+            <p>Ваш заказ начали готовить</p>
+            <p className={styles.textInactive}>Дождитесь готовности на орбитальной станции</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

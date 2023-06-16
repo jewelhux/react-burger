@@ -1,8 +1,9 @@
 .mainContainer {
   display: flex;
-  margin:  140px auto auto 0;
   flex-direction: column;
-  align-self: center;
+  max-width: 600px;
+  align-self: flex-start;
+  margin-top: 140px;
   gap: 40px;
 }
 

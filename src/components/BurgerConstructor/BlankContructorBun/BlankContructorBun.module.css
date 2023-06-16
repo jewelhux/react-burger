@@ -1,0 +1,12 @@
+.mainContainer {
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  padding: 20px;
+  border: 2px dashed purple;
+  border-radius: 20px;
+  gap: 5px;
+}
