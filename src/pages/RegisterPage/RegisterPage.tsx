@@ -38,7 +38,7 @@ const RegisterPage = () => {
       <Button htmlType="button">Зарегестрироваться</Button>
       <div className={styles.linkContainer}>
         <p>Уже зарегестрированы?</p>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/login">
           Войти
         </Link>
       </div>

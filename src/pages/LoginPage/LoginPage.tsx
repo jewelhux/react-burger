@@ -28,14 +28,14 @@ const LoginPage = () => {
       <Button htmlType="button">Войти</Button>
       <div className={styles.linkContainer}>
         <p>Вы — новый пользователь?</p>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/register">
           Зарегестрироваться
         </Link>
       </div>
       <div className={styles.linkContainer}>
         <p>Забыли пароль?</p>
-        <Link className={styles.link} to="/">
-          Восстановить
+        <Link className={styles.link} to="/forgot-password">
+          Восстановить пароль
         </Link>
       </div>
     </div>

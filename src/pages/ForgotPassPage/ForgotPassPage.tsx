@@ -18,7 +18,7 @@ const ForgotPassPage = () => {
       <Button htmlType="button">Восстановить</Button>
       <div className={styles.linkContainer}>
         <p>Вспомнили пароль?</p>
-        <Link className={styles.link} to="/">
+        <Link className={styles.link} to="/login">
           Войти
         </Link>
       </div>
