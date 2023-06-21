@@ -1,28 +1,24 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import styles from './App.module.css';
-import AppHeader from '../AppHeader/AppHeader';
-import Loader from '../Loader/Loader';
+import { Route, Routes } from 'react-router';
 import MainPage from '../../pages/MainPage/MainPage';
-import { fetchIngredients } from '../../services/actions/actions';
-import { useAppDispatch, useAppSelector } from '../../services/store';
+import LoginPage from '../../pages/LoginPage/LoginPage';
+import MainLayout from '../../Layout/MainLayout';
+import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
+import ResetPassPage from '../../pages/ResetPassPage/ResetPassPage';
+import ForgotPassPage from '../../pages/ForgotPassPage/ForgotPassPage';
 
 function App() {
-  const allIngredients = useAppSelector((state) => state.allIngredients);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, [dispatch]);
-
   return (
-    <Router>
-      <div className={styles.app}>
-        <AppHeader />
-        {allIngredients.loading ? <Loader /> : <ProfilePage />}
-      </div>
-    </Router>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route path="/forgot-password" element={<ForgotPassPage />} />
+        <Route path="/reset-password" element={<ResetPassPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
+      </Route>
+    </Routes>
   );
 }
 
