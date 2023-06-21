@@ -6,6 +6,7 @@ import RegisterPage from '../../pages/RegisterPage/RegisterPage';
 import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import ResetPassPage from '../../pages/ResetPassPage/ResetPassPage';
 import ForgotPassPage from '../../pages/ForgotPassPage/ForgotPassPage';
+import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassPage />} />
         <Route path="/profile" element={<ProfilePage />} />
       </Route>
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 }
