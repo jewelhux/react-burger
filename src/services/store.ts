@@ -4,6 +4,7 @@ import allIngredientsCurrentBurgerSlice from './slice/allIngredientsCurrentBurge
 import allIngredientsSlice from './slice/allIngredientsSlice';
 import currentIngredientSlice from './slice/currentIngredientSlice';
 import currentOrderSlice from './slice/currentOrderSlice';
+import registerUserSlice from './slice/registerUserSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     allIngredients: allIngredientsSlice,
     currentIngredient: currentIngredientSlice,
     currentOrder: currentOrderSlice,
+    registerUser: registerUserSlice,
   },
 });
 
