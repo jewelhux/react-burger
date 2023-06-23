@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { loginUser, logoutUser, registerUser, updateUserToken } from '../actions/actions';
+import {
+  checkUserAuth,
+  loginUser,
+  logoutUser,
+  registerUser,
+  updateUserToken,
+} from '../actions/actions';
 import { IUser } from '../../utils/interfaces';
 
 interface ISlice {
@@ -12,7 +18,7 @@ const initialState: ISlice = {
   isAuthChecked: false,
 };
 
-export const registerUserSlice = createSlice({
+export const userSlice = createSlice({
   name: 'currentOrder',
   initialState,
   reducers: {
@@ -25,22 +31,33 @@ export const registerUserSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(registerUser.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.user = action.payload;
       state.isAuthChecked = true;
     });
     builder.addCase(loginUser.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.user = action.payload;
       state.isAuthChecked = true;
     });
     builder.addCase(logoutUser.fulfilled, (state) => {
+      console.log('logout');
       state.user = null;
     });
     builder.addCase(updateUserToken.fulfilled, (state, action) => {
+      console.log(action.payload);
       state.user = action.payload;
+    });
+    builder.addCase(checkUserAuth.fulfilled, (state) => {
+      state.isAuthChecked = true;
+    });
+    builder.addCase(checkUserAuth.rejected, (state) => {
+      state.isAuthChecked = true;
+      state.user = null;
     });
   },
 });
 
-export const {} = registerUserSlice.actions;
+export const { setAuthChecked, setUser } = userSlice.actions;
 
-export default registerUserSlice.reducer;
+export default userSlice.reducer;

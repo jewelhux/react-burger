@@ -2,25 +2,13 @@ import { BURGER_API_URL } from './const';
 import { ILoginUser, IRegisterUser, IRefreshToken } from './interfaces';
 import { checkResponse } from './utils';
 
-export const refreshToken = () => {
-  return fetch(`${BURGER_API_URL}/auth/token`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify({
-      token: localStorage.getItem('refreshToken'),
-    }),
-  }).then(checkResponse);
-};
-
 export const fetchWithRefresh = async (url: string, options: RequestInit) => {
   try {
     const res = await fetch(url, options);
     return await checkResponse(res);
   } catch (err) {
     if ((err as Error).message === 'jwt expired') {
-      const refreshData = await refreshToken(); //обновляем токен
+      const refreshData = await updateToken(); //обновляем токен
       if (!refreshData.success) {
         return Promise.reject(refreshData);
       }
@@ -69,7 +57,7 @@ const login = async (userData: ILoginUser) => {
 
 const logout = async (tokenData: IRefreshToken) => {
   try {
-    const response = await fetch(`${BURGER_API_URL}/auth/logout`, {
+    const response = await fetchWithRefresh(`${BURGER_API_URL}/auth/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,24 +70,28 @@ const logout = async (tokenData: IRefreshToken) => {
   }
 };
 
-const updateToken = async (tokenData: IRefreshToken) => {
-  try {
-    const response = await fetch(`${BURGER_API_URL}/auth/token`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...tokenData }),
-    });
-    return checkResponse(response);
-  } catch (error) {
-    return new Error('Incorrect user data');
-  }
+const updateToken = async () => {
+  return fetch(`${BURGER_API_URL}/auth/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({
+      token: localStorage.getItem('refreshToken'),
+    }),
+  }).then(checkResponse);
 };
 
 const getUser = async () => {
-  try {
-  } catch (error) {}
+  return fetch(`${BURGER_API_URL}/auth/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({
+      token: localStorage.getItem('accessToken'),
+    }),
+  }).then(checkResponse);
 };
 
 export const api = {

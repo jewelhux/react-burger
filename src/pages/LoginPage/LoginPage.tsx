@@ -5,16 +5,19 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { loginUser } from '../../services/actions/actions';
+import { useAppDispatch } from '../../services/store';
 import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
+  const dispatch = useAppDispatch();
   const [emailValue, setEmailValue] = React.useState('');
   const [passValue, setPassValue] = React.useState('');
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     console.log('Вход');
-    // dispatch(registerUser({ email: emailValue, password: passValue, name: nameValue }));
+    dispatch(loginUser({ email: emailValue, password: passValue }));
   };
 
   return (

@@ -56,12 +56,26 @@ export const logoutUser = createAsyncThunk<void, IRefreshToken>(
   }
 );
 
-export const updateUserToken = createAsyncThunk<IUser, IRefreshToken>(
-  'auth/token',
-  async (tokenData) => {
-    const res = await api.updateToken(tokenData);
-    localStorage.setItem('accessToken', res.accessToken);
-    localStorage.setItem('refreshToken', res.refreshToken);
-    return res;
+export const updateUserToken = createAsyncThunk<IUser, IRefreshToken>('auth/token', async () => {
+  const res = await api.updateToken();
+  localStorage.setItem('accessToken', res.accessToken);
+  localStorage.setItem('refreshToken', res.refreshToken);
+  return res;
+});
+
+export const getUser = createAsyncThunk('auth/user', async () => {
+  const res = await api.getUser();
+  return res.user;
+});
+
+export const checkUserAuth = createAsyncThunk('user/checkUserAuth', async (unknown, thunkAPI) => {
+  if (localStorage.getItem('accessToken')) {
+    try {
+      await thunkAPI.dispatch(getUser());
+    } catch (e) {
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      thunkAPI.rejectWithValue('');
+    }
   }
-);
+});
