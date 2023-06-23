@@ -6,16 +6,24 @@ import styles from './ForgotPassPage.module.css';
 const ForgotPassPage = () => {
   const [emailValue, setEmailValue] = React.useState('');
 
+  const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('ForgotPassPage');
+    // dispatch(registerUser({ email: emailValue, password: passValue, name: nameValue }));
+  };
+
   return (
     <div className={styles.mainContainer}>
       <h2>Восстановление пароля</h2>
-      <EmailInput
-        onChange={(e) => setEmailValue(e.target.value)}
-        value={emailValue}
-        name={'email'}
-        placeholder="E-mail"
-      />
-      <Button htmlType="button">Восстановить</Button>
+      <form className={styles.formContainer} onSubmit={handleSubmitForm}>
+        <EmailInput
+          onChange={(e) => setEmailValue(e.target.value)}
+          value={emailValue}
+          name={'email'}
+          placeholder="E-mail"
+        />
+        <Button htmlType="submit">Восстановить</Button>
+      </form>
       <div className={styles.linkContainer}>
         <p>Вспомнили пароль?</p>
         <Link className={styles.link} to="/login">

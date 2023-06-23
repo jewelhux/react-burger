@@ -48,13 +48,7 @@ interface IResponseForgot {
   message: string;
 }
 
-interface IRegisterUser {
-  email: string;
-  password: string;
-  name: string;
-}
-
-interface IResponseRegisterUser {
+interface IUser {
   success: boolean;
   user: {
     email: string;
@@ -62,6 +56,25 @@ interface IResponseRegisterUser {
   };
   accessToken: string;
   refreshToken: string;
+}
+
+interface IRegisterUser {
+  email: string;
+  password: string;
+  name: string;
+}
+
+interface ILoginUser {
+  email: string;
+  password: string;
+}
+
+interface IRefreshToken {
+  refreshToken: string;
+}
+
+interface IAccessToken {
+  accessToken: string;
 }
 
 export type {
@@ -74,5 +87,8 @@ export type {
   IDragItem,
   IResponseForgot,
   IRegisterUser,
-  IResponseRegisterUser,
+  IUser,
+  IRefreshToken,
+  IAccessToken,
+  ILoginUser,
 };

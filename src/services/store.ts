@@ -4,7 +4,7 @@ import allIngredientsCurrentBurgerSlice from './slice/allIngredientsCurrentBurge
 import allIngredientsSlice from './slice/allIngredientsSlice';
 import currentIngredientSlice from './slice/currentIngredientSlice';
 import currentOrderSlice from './slice/currentOrderSlice';
-import registerUserSlice from './slice/registerUserSlice';
+import registerUserSlice from './slice/userSlice';
 
 export const store = configureStore({
   reducer: {

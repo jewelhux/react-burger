@@ -11,21 +11,29 @@ const LoginPage = () => {
   const [emailValue, setEmailValue] = React.useState('');
   const [passValue, setPassValue] = React.useState('');
 
+  const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('Вход');
+    // dispatch(registerUser({ email: emailValue, password: passValue, name: nameValue }));
+  };
+
   return (
     <div className={styles.mainContainer}>
       <h2>Вход</h2>
-      <EmailInput
-        onChange={(e) => setEmailValue(e.target.value)}
-        value={emailValue}
-        name={'email'}
-        placeholder="E-mail"
-      />
-      <PasswordInput
-        onChange={(e) => setPassValue(e.target.value)}
-        value={passValue}
-        name={'password'}
-      />
-      <Button htmlType="button">Войти</Button>
+      <form className={styles.formContainer} onSubmit={handleSubmitForm}>
+        <EmailInput
+          onChange={(e) => setEmailValue(e.target.value)}
+          value={emailValue}
+          name={'email'}
+          placeholder="E-mail"
+        />
+        <PasswordInput
+          onChange={(e) => setPassValue(e.target.value)}
+          value={passValue}
+          name={'password'}
+        />
+        <Button htmlType="submit">Войти</Button>
+      </form>
       <div className={styles.linkContainer}>
         <p>Вы — новый пользователь?</p>
         <Link className={styles.link} to="/register">

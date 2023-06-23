@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
-import { checkResponse } from '../../utils/burger-api';
 import { BURGER_API_URL, DATA_ADRESS } from '../../utils/const';
-import { IData, IRegisterUser, IResponseRegisterUser } from '../../utils/interfaces';
+import { IData, ILoginUser, IRefreshToken, IRegisterUser, IUser } from '../../utils/interfaces';
+import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
   try {
@@ -30,10 +30,36 @@ export const placeOrder = createAsyncThunk<IData[], string[], { rejectValue: Err
   }
 );
 
-export const registerUser = createAsyncThunk<IResponseRegisterUser, IRegisterUser>(
+export const registerUser = createAsyncThunk<IUser, IRegisterUser>(
   'auth/register',
   async (userData) => {
     const res = await api.register(userData);
+    localStorage.setItem('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
+    return res;
+  }
+);
+
+export const loginUser = createAsyncThunk<IUser, ILoginUser>('auth/login', async (userData) => {
+  const res = await api.login(userData);
+  localStorage.setItem('accessToken', res.accessToken);
+  localStorage.setItem('refreshToken', res.refreshToken);
+  return res;
+});
+
+export const logoutUser = createAsyncThunk<void, IRefreshToken>(
+  'auth/logout',
+  async (tokenData) => {
+    await api.logout(tokenData);
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+  }
+);
+
+export const updateUserToken = createAsyncThunk<IUser, IRefreshToken>(
+  'auth/token',
+  async (tokenData) => {
+    const res = await api.updateToken(tokenData);
     localStorage.setItem('accessToken', res.accessToken);
     localStorage.setItem('refreshToken', res.refreshToken);
     return res;
