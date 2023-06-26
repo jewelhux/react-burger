@@ -68,7 +68,7 @@ export const getUser = createAsyncThunk('auth/user', async () => {
   return res.user;
 });
 
-export const checkUserAuth = createAsyncThunk('user/checkUserAuth', async (unknown, thunkAPI) => {
+export const checkUserAuth = createAsyncThunk('auth/checkUserAuth', async (unknown, thunkAPI) => {
   if (localStorage.getItem('accessToken')) {
     try {
       await thunkAPI.dispatch(getUser());

@@ -94,10 +94,23 @@ const getUser = async () => {
   }).then(checkResponse);
 };
 
+const resetPass = async (mail: string) => {
+  return fetch(`${BURGER_API_URL}/password-reset`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({
+      email: mail,
+    }),
+  }).then(checkResponse);
+};
+
 export const api = {
   login,
   register,
   logout,
   updateToken,
   getUser,
+  resetPass,
 };

@@ -7,17 +7,18 @@ import ProfilePage from '../../pages/ProfilePage/ProfilePage';
 import ResetPassPage from '../../pages/ResetPassPage/ResetPassPage';
 import ForgotPassPage from '../../pages/ForgotPassPage/ForgotPassPage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
+import { OnlyAuth, OnlyUnAuth } from '../ProtectedRouteElement';
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index path="/" element={<MainPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgot-password" element={<ForgotPassPage />} />
-        <Route path="/reset-password" element={<ResetPassPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
+        <Route path="/register" element={<OnlyUnAuth component={<RegisterPage />} />} />
+        <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassPage />} />} />
+        <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassPage />} />} />
+        <Route path="/profile" element={<OnlyAuth component={<ProfilePage />} />} />
       </Route>
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

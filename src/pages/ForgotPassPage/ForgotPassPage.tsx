@@ -1,15 +1,21 @@
 import React from 'react';
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import styles from './ForgotPassPage.module.css';
+import { api } from '../../utils/api';
 
 const ForgotPassPage = () => {
   const [emailValue, setEmailValue] = React.useState('');
 
-  const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+  const handleSubmitForm = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('ForgotPassPage');
-    // dispatch(registerUser({ email: emailValue, password: passValue, name: nameValue }));
+
+    await api.resetPass(emailValue).then(() => {
+      localStorage.setItem('validEmail', 'true');
+      console.log('123');
+    });
+
+    <Navigate to="/reset-password" />;
   };
 
   return (
