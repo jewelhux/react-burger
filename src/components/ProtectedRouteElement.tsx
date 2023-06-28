@@ -16,12 +16,12 @@ const Protected = ({ onlyUnAuth = false, component }: ProtectedProps) => {
   const location = useLocation();
   console.log(isAuthChecked);
 
-  // if (!isAuthChecked) {
-  //   // Запрос еще выполняется
-  //   // Выводим прелоадер в ПР
-  //   // Здесь возвращается просто null для экономии времени
-  //   return <Loader />;
-  // }
+  if (!isAuthChecked) {
+    // Запрос еще выполняется
+    // Выводим прелоадер в ПР
+    // Здесь возвращается просто null для экономии времени
+    return <Loader />;
+  }
 
   if (onlyUnAuth && user) {
     // Пользователь авторизован, но роут предназначен для неавторизованного пользователя

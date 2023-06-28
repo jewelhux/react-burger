@@ -83,7 +83,7 @@ const updateToken = async () => {
 };
 
 const getUser = async () => {
-  return fetch(`${BURGER_API_URL}/auth/token`, {
+  return fetchWithRefresh(`${BURGER_API_URL}/auth/token`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

@@ -8,8 +8,17 @@ import ResetPassPage from '../../pages/ResetPassPage/ResetPassPage';
 import ForgotPassPage from '../../pages/ForgotPassPage/ForgotPassPage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import { OnlyAuth, OnlyUnAuth } from '../ProtectedRouteElement';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../services/store';
+import { checkUserAuth } from '../../services/actions/actions';
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(checkUserAuth());
+  }, [dispatch]);
+
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>

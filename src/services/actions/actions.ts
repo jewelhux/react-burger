@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../utils/api';
+import { api, fetchWithRefresh } from '../../utils/api';
 import { BURGER_API_URL, DATA_ADRESS } from '../../utils/const';
 import { IData, ILoginUser, IRefreshToken, IRegisterUser, IUser } from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
@@ -16,11 +16,12 @@ export const placeOrder = createAsyncThunk<IData[], string[], { rejectValue: Err
   'order/placeOrder',
   async (ingredients, { rejectWithValue }) => {
     try {
-      const response = await fetch(`${BURGER_API_URL}/orders`, {
+      const response = await fetchWithRefresh(`${BURGER_API_URL}/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-        },
+          Authorization: localStorage.getItem('accessToken'),
+        } as HeadersInit,
         body: JSON.stringify({ ingredients }),
       });
       return checkResponse(response);
