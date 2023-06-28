@@ -1,5 +1,5 @@
 import { BURGER_API_URL } from './const';
-import { ILoginUser, IRegisterUser, IRefreshToken } from './interfaces';
+import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData } from './interfaces';
 import { checkResponse } from './utils';
 
 export const fetchWithRefresh = async (url: string, options: RequestInit) => {
@@ -94,7 +94,7 @@ const getUser = async () => {
   }).then(checkResponse);
 };
 
-const resetPass = async (mail: string) => {
+const forgotPass = async (mail: string) => {
   return fetch(`${BURGER_API_URL}/password-reset`, {
     method: 'POST',
     headers: {
@@ -106,11 +106,22 @@ const resetPass = async (mail: string) => {
   }).then(checkResponse);
 };
 
+const resetPass = async (resetPassData: IResetPassData) => {
+  return fetch(`${BURGER_API_URL}/password-reset/reset`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({ ...resetPassData }),
+  }).then(checkResponse);
+};
+
 export const api = {
   login,
   register,
   logout,
   updateToken,
   getUser,
+  forgotPass,
   resetPass,
 };

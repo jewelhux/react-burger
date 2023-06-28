@@ -2,9 +2,10 @@ import React from 'react';
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styles from './ResetPassPage.module.css';
+import { api } from '../../utils/api';
 
 const ResetPassPage = () => {
-  const [nameValue, setNameValue] = React.useState('');
+  const [codeValue, setCodeValue] = React.useState('');
   const [passValue, setPassValue] = React.useState('');
   const navigate = useNavigate();
 
@@ -12,6 +13,8 @@ const ResetPassPage = () => {
     event.preventDefault();
     localStorage.removeItem('validEmail');
     console.log('ResetPassPage');
+
+    api.resetPass({ password: passValue, token: codeValue });
     navigate('/login');
   };
 
@@ -32,8 +35,8 @@ const ResetPassPage = () => {
             <Input
               type={'text'}
               placeholder={'Введите код из письма'}
-              onChange={(e) => setNameValue(e.target.value)}
-              value={nameValue}
+              onChange={(e) => setCodeValue(e.target.value)}
+              value={codeValue}
               error={false}
               errorText={'Ошибка'}
             />

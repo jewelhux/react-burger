@@ -11,7 +11,7 @@ const ForgotPassPage = () => {
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    api.resetPass(emailValue).then(() => {
+    api.forgotPass(emailValue).then(() => {
       localStorage.setItem('validEmail', 'true');
       navigate('/reset-password');
     });

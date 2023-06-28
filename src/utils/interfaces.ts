@@ -77,6 +77,11 @@ interface IAccessToken {
   accessToken: string;
 }
 
+interface IResetPassData {
+  password: string;
+  token: string;
+}
+
 export type {
   IData,
   IOrderData,
@@ -91,4 +96,5 @@ export type {
   IRefreshToken,
   IAccessToken,
   ILoginUser,
+  IResetPassData,
 };
