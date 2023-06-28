@@ -1,15 +1,18 @@
 import React from 'react';
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import styles from './ResetPassPage.module.css';
 
 const ResetPassPage = () => {
   const [nameValue, setNameValue] = React.useState('');
   const [passValue, setPassValue] = React.useState('');
+  const navigate = useNavigate();
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
+    localStorage.removeItem('validEmail');
     console.log('ResetPassPage');
+    navigate('/login');
   };
 
   return (
