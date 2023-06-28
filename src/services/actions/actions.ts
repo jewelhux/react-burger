@@ -16,14 +16,7 @@ export const placeOrder = createAsyncThunk<IData[], string[], { rejectValue: Err
   'order/placeOrder',
   async (ingredients, { rejectWithValue }) => {
     try {
-      const response = await fetchWithRefresh(`${BURGER_API_URL}/orders`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: localStorage.getItem('accessToken'),
-        } as HeadersInit,
-        body: JSON.stringify({ ingredients }),
-      });
+      const response = await api.setOrder(ingredients);
       return checkResponse(response);
     } catch (error) {
       return rejectWithValue(new Error('Failed to place order'));
@@ -56,13 +49,6 @@ export const logoutUser = createAsyncThunk<void, IRefreshToken>(
     localStorage.removeItem('refreshToken');
   }
 );
-
-export const updateUserToken = createAsyncThunk<IUser, IRefreshToken>('auth/token', async () => {
-  const res = await api.updateToken();
-  localStorage.setItem('accessToken', res.accessToken);
-  localStorage.setItem('refreshToken', res.refreshToken);
-  return res;
-});
 
 export const getUser = createAsyncThunk('auth/user', async () => {
   const res = await api.getUser();

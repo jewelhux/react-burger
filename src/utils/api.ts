@@ -1,6 +1,18 @@
 import { BURGER_API_URL } from './const';
-import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData } from './interfaces';
+import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData, IData } from './interfaces';
 import { checkResponse } from './utils';
+
+const updateToken = async () => {
+  return fetch(`${BURGER_API_URL}/auth/token`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8',
+    },
+    body: JSON.stringify({
+      token: localStorage.getItem('refreshToken'),
+    }),
+  }).then(checkResponse);
+};
 
 export const fetchWithRefresh = async (url: string, options: RequestInit) => {
   try {
@@ -23,6 +35,17 @@ export const fetchWithRefresh = async (url: string, options: RequestInit) => {
       return Promise.reject(err);
     }
   }
+};
+
+const setOrder = async (ingredients: string[]) => {
+  return fetchWithRefresh(`${BURGER_API_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: localStorage.getItem('accessToken'),
+    } as HeadersInit,
+    body: JSON.stringify({ ingredients }),
+  });
 };
 
 const register = async (userData: IRegisterUser) => {
@@ -70,24 +93,13 @@ const logout = async (tokenData: IRefreshToken) => {
   }
 };
 
-const updateToken = async () => {
-  return fetch(`${BURGER_API_URL}/auth/token`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
-    body: JSON.stringify({
-      token: localStorage.getItem('refreshToken'),
-    }),
-  }).then(checkResponse);
-};
-
 const getUser = async () => {
   return fetchWithRefresh(`${BURGER_API_URL}/auth/token`, {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json;charset=utf-8',
-    },
+      'Content-Type': 'application/json',
+      authorization: localStorage.getItem('accessToken'),
+    } as HeadersInit,
     body: JSON.stringify({
       token: localStorage.getItem('accessToken'),
     }),
@@ -124,4 +136,5 @@ export const api = {
   getUser,
   forgotPass,
   resetPass,
+  setOrder,
 };
