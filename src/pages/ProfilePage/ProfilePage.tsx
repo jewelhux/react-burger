@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
-import { useAppDispatch } from '../../services/store';
+import { useAppDispatch, useAppSelector } from '../../services/store';
 import { logoutUser } from '../../services/actions/actions';
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  const [nameValue, setNameValue] = React.useState('');
-  const [emailValue, setEmailValue] = React.useState('');
+  const userData = useAppSelector((store) => store.user.user);
+
+  const [nameValue, setNameValue] = React.useState(userData!.name);
+  const [emailValue, setEmailValue] = React.useState(userData!.email);
   const [passValue, setPassValue] = React.useState('');
+  const [btnVisible, setBtnVisible] = React.useState(false);
+
+  useEffect(() => {
+    if (nameValue !== userData?.name || emailValue !== userData?.email || passValue) {
+      setBtnVisible(true);
+    } else {
+      setBtnVisible(false);
+    }
+  }, [nameValue, emailValue, passValue, userData?.name, userData?.email]);
 
   const handleLogout = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -66,10 +77,14 @@ const ProfilePage = () => {
           error={false}
           errorText={'Ошибка'}
         />
-        <div className={styles.buttons}>
-          <Button htmlType="submit">Сохранить</Button>
-          <Button htmlType="button">Отмена</Button>
-        </div>
+        {btnVisible ? (
+          <div className={styles.buttons}>
+            <Button htmlType="submit">Сохранить</Button>
+            <Button htmlType="button">Отмена</Button>
+          </div>
+        ) : (
+          <></>
+        )}
       </form>
     </div>
   );

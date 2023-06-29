@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
 import { DATA_ADRESS } from '../../utils/const';
-import { IData, ILoginUser, IRegisterUser, IUser } from '../../utils/interfaces';
+import { ILoginUser, IOrder, IRegisterUser, IUser } from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
@@ -12,12 +12,11 @@ export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients',
   }
 });
 
-export const placeOrder = createAsyncThunk<IData[], string[], { rejectValue: Error }>(
+export const placeOrder = createAsyncThunk<IOrder, string[], { rejectValue: Error }>(
   'order/placeOrder',
   async (ingredients, { rejectWithValue }) => {
     try {
-      const response = await api.setOrder(ingredients);
-      return checkResponse(response);
+      return await api.setOrder(ingredients);
     } catch (error) {
       return rejectWithValue(new Error('Failed to place order'));
     }
