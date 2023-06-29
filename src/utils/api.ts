@@ -38,7 +38,6 @@ export const fetchWithRefresh = async (url: string, options: RequestInit) => {
 };
 
 const setOrder = async (ingredients: string[]) => {
-  console.log(ingredients);
   return fetchWithRefresh(`${BURGER_API_URL}/orders`, {
     method: 'POST',
     headers: {
@@ -106,6 +105,17 @@ const getUser = async () => {
   });
 };
 
+const editUser = async (userData: IRegisterUser) => {
+  return fetchWithRefresh(`${BURGER_API_URL}/auth/user`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: localStorage.getItem('accessToken'),
+    } as HeadersInit,
+    body: JSON.stringify({ ...userData }),
+  });
+};
+
 const forgotPass = async (mail: string) => {
   return fetch(`${BURGER_API_URL}/password-reset`, {
     method: 'POST',
@@ -134,6 +144,7 @@ export const api = {
   logout,
   updateToken,
   getUser,
+  editUser,
   forgotPass,
   resetPass,
   setOrder,

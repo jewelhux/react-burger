@@ -16,7 +16,6 @@ const LoginPage = () => {
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Вход');
     dispatch(loginUser({ email: emailValue, password: passValue }));
   };
 

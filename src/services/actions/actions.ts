@@ -60,6 +60,22 @@ export const getUser = createAsyncThunk('auth/user', async (unknown, thunkAPI) =
   }
 });
 
+export const editUser = createAsyncThunk<IUser, IRegisterUser>(
+  'auth/editUser',
+  async (userData, thunkAPI) => {
+    try {
+      const res = await api.editUser(userData);
+
+      if (!res.success) {
+        return thunkAPI.rejectWithValue('');
+      }
+      return res.user;
+    } catch (e) {
+      return thunkAPI.rejectWithValue('');
+    }
+  }
+);
+
 export const checkUserAuth = createAsyncThunk('auth/checkUserAuth', async (unknown, thunkAPI) => {
   if (localStorage.getItem('accessToken')) {
     await thunkAPI.dispatch(getUser());

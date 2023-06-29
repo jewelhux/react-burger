@@ -3,7 +3,7 @@ import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-component
 import { Link } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { useAppDispatch, useAppSelector } from '../../services/store';
-import { logoutUser } from '../../services/actions/actions';
+import { editUser, logoutUser } from '../../services/actions/actions';
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -29,7 +29,8 @@ const ProfilePage = () => {
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Сохранение данных пользователя');
+    alert('Данные обновлены');
+    dispatch(editUser({ name: nameValue, email: emailValue, password: passValue }));
   };
 
   return (

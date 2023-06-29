@@ -28,7 +28,6 @@ export const currentOrderSlice = createSlice({
       state.loading = true;
     });
     builder.addCase(placeOrder.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.order = JSON.parse(JSON.stringify(action.payload));
       state.loading = false;
     });

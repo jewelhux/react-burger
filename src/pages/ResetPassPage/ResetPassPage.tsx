@@ -12,7 +12,6 @@ const ResetPassPage = () => {
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
     localStorage.removeItem('validEmail');
-    console.log('ResetPassPage');
 
     api.resetPass({ password: passValue, token: codeValue });
     navigate('/login');
