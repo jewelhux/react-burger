@@ -1,16 +1,25 @@
 import React from 'react';
-import {
-  EmailInput,
-  Input,
-  PasswordInput,
-} from '@ya.praktikum/react-developer-burger-ui-components';
+import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
+import { useAppDispatch } from '../../services/store';
+import { logoutUser } from '../../services/actions/actions';
 
 const ProfilePage = () => {
+  const dispatch = useAppDispatch();
   const [nameValue, setNameValue] = React.useState('');
   const [emailValue, setEmailValue] = React.useState('');
   const [passValue, setPassValue] = React.useState('');
+
+  const handleLogout = (event: React.MouseEvent) => {
+    event.preventDefault();
+    dispatch(logoutUser());
+  };
+
+  const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log('Сохранение данных пользователя');
+  };
 
   return (
     <div className={styles.mainContainer}>
@@ -22,7 +31,7 @@ const ProfilePage = () => {
           <Link className={styles.link} to="/">
             История заказов
           </Link>
-          <Link className={styles.link} to="/">
+          <Link className={styles.link} to="/" onClick={handleLogout}>
             Выход
           </Link>
         </div>
@@ -30,7 +39,7 @@ const ProfilePage = () => {
           В этом разделе вы можете изменить свои персональные данные
         </p>
       </div>
-      <div className={styles.inputContainer}>
+      <form className={styles.inputContainer} onSubmit={handleSubmitForm}>
         <Input
           type={'text'}
           placeholder={'Имя'}
@@ -39,18 +48,29 @@ const ProfilePage = () => {
           error={false}
           errorText={'Ошибка'}
         />
-        <EmailInput
+        <Input
+          type="email"
+          placeholder={'E-mail'}
           onChange={(e) => setEmailValue(e.target.value)}
           value={emailValue}
           name={'email'}
-          placeholder="E-mail"
+          error={false}
+          errorText={'Ошибка'}
         />
-        <PasswordInput
+        <Input
+          type="password"
+          placeholder={'Password'}
           onChange={(e) => setPassValue(e.target.value)}
           value={passValue}
           name={'password'}
+          error={false}
+          errorText={'Ошибка'}
         />
-      </div>
+        <div className={styles.buttons}>
+          <Button htmlType="submit">Сохранить</Button>
+          <Button htmlType="button">Отмена</Button>
+        </div>
+      </form>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { BURGER_API_URL } from './const';
-import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData, IData } from './interfaces';
+import { ILoginUser, IRegisterUser, IResetPassData } from './interfaces';
 import { checkResponse } from './utils';
 
 const updateToken = async () => {
@@ -38,6 +38,7 @@ export const fetchWithRefresh = async (url: string, options: RequestInit) => {
 };
 
 const setOrder = async (ingredients: string[]) => {
+  console.log(ingredients);
   return fetchWithRefresh(`${BURGER_API_URL}/orders`, {
     method: 'POST',
     headers: {
@@ -78,14 +79,16 @@ const login = async (userData: ILoginUser) => {
   }
 };
 
-const logout = async (tokenData: IRefreshToken) => {
+const logout = async () => {
   try {
     const response = await fetchWithRefresh(`${BURGER_API_URL}/auth/logout`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...tokenData }),
+      body: JSON.stringify({
+        token: localStorage.getItem('refreshToken'),
+      }),
     });
     return checkResponse(response);
   } catch (error) {

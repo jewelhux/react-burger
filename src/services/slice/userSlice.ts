@@ -38,12 +38,12 @@ export const userSlice = createSlice({
     builder.addCase(getUser.fulfilled, (state, action) => {
       state.user = action.payload;
     });
-    builder.addCase(getUser.rejected, (state, action) => {
+    builder.addCase(getUser.rejected, (state) => {
       state.user = null;
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
     });
-    builder.addCase(checkUserAuth.fulfilled, (state, action) => {
+    builder.addCase(checkUserAuth.fulfilled, (state) => {
       state.isAuthChecked = true;
     });
     builder.addCase(checkUserAuth.rejected, (state) => {

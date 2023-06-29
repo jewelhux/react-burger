@@ -39,3 +39,8 @@
 .textLinkContainer {
   opacity: 0.2;
 }
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}

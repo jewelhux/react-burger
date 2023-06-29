@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api, fetchWithRefresh } from '../../utils/api';
-import { BURGER_API_URL, DATA_ADRESS } from '../../utils/const';
-import { IData, ILoginUser, IRefreshToken, IRegisterUser, IUser } from '../../utils/interfaces';
+import { api } from '../../utils/api';
+import { DATA_ADRESS } from '../../utils/const';
+import { IData, ILoginUser, IRegisterUser, IUser } from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
@@ -41,14 +41,11 @@ export const loginUser = createAsyncThunk<IUser, ILoginUser>('auth/login', async
   return res.user;
 });
 
-export const logoutUser = createAsyncThunk<void, IRefreshToken>(
-  'auth/logout',
-  async (tokenData) => {
-    await api.logout(tokenData);
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-  }
-);
+export const logoutUser = createAsyncThunk('auth/logout', async () => {
+  await api.logout();
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+});
 
 export const getUser = createAsyncThunk('auth/user', async (unknown, thunkAPI) => {
   try {
