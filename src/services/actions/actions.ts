@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api, fetchWithRefresh } from '../../utils/api';
-import { BURGER_API_URL, DATA_ADRESS } from '../../utils/const';
+import { api } from '../../utils/api';
+import { DATA_ADRESS } from '../../utils/const';
 import { IData, ILoginUser, IRefreshToken, IRegisterUser, IUser } from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
 

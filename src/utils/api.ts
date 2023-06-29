@@ -1,5 +1,5 @@
 import { BURGER_API_URL } from './const';
-import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData, IData } from './interfaces';
+import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData } from './interfaces';
 import { checkResponse } from './utils';
 
 const updateToken = async () => {
@@ -94,15 +94,12 @@ const logout = async (tokenData: IRefreshToken) => {
 };
 
 const getUser = async () => {
-  return fetchWithRefresh(`${BURGER_API_URL}/auth/token`, {
-    method: 'POST',
+  return fetchWithRefresh(`${BURGER_API_URL}/auth/user`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       authorization: localStorage.getItem('accessToken'),
     } as HeadersInit,
-    body: JSON.stringify({
-      token: localStorage.getItem('accessToken'),
-    }),
   }).then(checkResponse);
 };
 

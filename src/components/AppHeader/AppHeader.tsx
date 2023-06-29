@@ -31,15 +31,9 @@ const AppHeader = () => {
       </div>
       <div className={`${styles.rightSection} ${styles.menuItem}`}>
         <ProfileIcon type="secondary" />
-        {userName ? (
-          <Link to="/profile" className={styles.mainTextDefault}>
-            {userName}
-          </Link>
-        ) : (
-          <Link to="/login" className={styles.mainTextDefault}>
-            Вход и регистрация
-          </Link>
-        )}
+        <Link to="/profile" className={styles.mainTextDefault}>
+          {userName ? userName : 'Личный кабинет'}
+        </Link>
       </div>
     </header>
   );
