@@ -10,7 +10,7 @@ import { useAppSelector } from '../../services/store';
 import styles from './AppHeader.module.css';
 
 const AppHeader = () => {
-  const userName = useAppSelector((state) => state.user.user?.user.name);
+  const userName = useAppSelector((state) => state.user.user?.name);
 
   return (
     <header className={styles.header}>

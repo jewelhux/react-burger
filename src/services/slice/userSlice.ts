@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { checkUserAuth, loginUser, logoutUser, registerUser } from '../actions/actions';
+import { checkUserAuth, getUser, loginUser, logoutUser, registerUser } from '../actions/actions';
 import { IUser } from '../../utils/interfaces';
 
 interface ISlice {
@@ -35,12 +35,19 @@ export const userSlice = createSlice({
     builder.addCase(logoutUser.fulfilled, (state) => {
       state.user = null;
     });
-    builder.addCase(checkUserAuth.fulfilled, (state) => {
+    builder.addCase(getUser.fulfilled, (state, action) => {
+      state.user = action.payload;
+    });
+    builder.addCase(getUser.rejected, (state, action) => {
+      state.user = null;
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+    });
+    builder.addCase(checkUserAuth.fulfilled, (state, action) => {
       state.isAuthChecked = true;
     });
     builder.addCase(checkUserAuth.rejected, (state) => {
       state.isAuthChecked = true;
-      state.user = null;
     });
   },
 });

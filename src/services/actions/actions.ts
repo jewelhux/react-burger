@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../utils/api';
-import { DATA_ADRESS } from '../../utils/const';
+import { api, fetchWithRefresh } from '../../utils/api';
+import { BURGER_API_URL, DATA_ADRESS } from '../../utils/const';
 import { IData, ILoginUser, IRefreshToken, IRegisterUser, IUser } from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
 
@@ -30,7 +30,7 @@ export const registerUser = createAsyncThunk<IUser, IRegisterUser>(
     const res = await api.register(userData);
     localStorage.setItem('accessToken', res.accessToken);
     localStorage.setItem('refreshToken', res.refreshToken);
-    return res;
+    return res.user;
   }
 );
 
@@ -38,7 +38,7 @@ export const loginUser = createAsyncThunk<IUser, ILoginUser>('auth/login', async
   const res = await api.login(userData);
   localStorage.setItem('accessToken', res.accessToken);
   localStorage.setItem('refreshToken', res.refreshToken);
-  return res;
+  return res.user;
 });
 
 export const logoutUser = createAsyncThunk<void, IRefreshToken>(
@@ -50,19 +50,22 @@ export const logoutUser = createAsyncThunk<void, IRefreshToken>(
   }
 );
 
-export const getUser = createAsyncThunk('auth/user', async () => {
-  const res = await api.getUser();
-  return res.user;
+export const getUser = createAsyncThunk('auth/user', async (unknown, thunkAPI) => {
+  try {
+    const res = await api.getUser();
+
+    if (!res.success) {
+      return thunkAPI.rejectWithValue('');
+    }
+
+    return res.user;
+  } catch (e) {
+    return thunkAPI.rejectWithValue('');
+  }
 });
 
 export const checkUserAuth = createAsyncThunk('auth/checkUserAuth', async (unknown, thunkAPI) => {
   if (localStorage.getItem('accessToken')) {
-    try {
-      await thunkAPI.dispatch(getUser());
-    } catch (e) {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      thunkAPI.rejectWithValue('');
-    }
+    await thunkAPI.dispatch(getUser());
   }
 });

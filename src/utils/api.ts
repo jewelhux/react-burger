@@ -1,5 +1,5 @@
 import { BURGER_API_URL } from './const';
-import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData } from './interfaces';
+import { ILoginUser, IRegisterUser, IRefreshToken, IResetPassData, IData } from './interfaces';
 import { checkResponse } from './utils';
 
 const updateToken = async () => {
@@ -100,7 +100,7 @@ const getUser = async () => {
       'Content-Type': 'application/json',
       authorization: localStorage.getItem('accessToken'),
     } as HeadersInit,
-  }).then(checkResponse);
+  });
 };
 
 const forgotPass = async (mail: string) => {

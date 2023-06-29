@@ -49,13 +49,8 @@ interface IResponseForgot {
 }
 
 interface IUser {
-  success: boolean;
-  user: {
-    email: string;
-    name: string;
-  };
-  accessToken: string;
-  refreshToken: string;
+  email: string;
+  name: string;
 }
 
 interface IRegisterUser {
