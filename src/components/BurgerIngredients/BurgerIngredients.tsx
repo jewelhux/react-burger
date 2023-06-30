@@ -7,7 +7,7 @@ import styles from './BurgerIngredients.module.css';
 import ProductListContainer from './ProductListContainer/ProductListContainer';
 
 const BurgerIngredients = () => {
-  const currentIngredient = useAppSelector((state) => state.currentIngredient);
+  const currentIngredient = useAppSelector((state) => state.currentIngredient.ingredient);
   const dispatch = useAppDispatch();
 
   const closeIngredientModal = () => {
@@ -20,9 +20,9 @@ const BurgerIngredients = () => {
         <p className={styles.mainText}>Соберите бургер.</p>
         <ProductListContainer />
       </div>
-      {currentIngredient.ingredient && (
+      {currentIngredient && (
         <Modal onClose={closeIngredientModal} title={'Выберите ингридиенты'}>
-          <IngredientDetails item={currentIngredient.ingredient} />
+          <IngredientDetails />
         </Modal>
       )}
     </>

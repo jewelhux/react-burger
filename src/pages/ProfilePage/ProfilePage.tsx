@@ -41,14 +41,20 @@ const ProfilePage = () => {
     }
   };
 
+  const handleSettingCancel = () => {
+    setNameValue(userData!.name);
+    setEmailValue(userData!.email);
+    setPassValue('');
+  };
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.sectionContainer}>
         <div className={styles.linkContainer}>
-          <Link className={`${styles.link} ${styles.active}`} to="/">
+          <Link className={`${styles.link} ${styles.active}`} to="/profile">
             Профиль
           </Link>
-          <Link className={styles.link} to="/">
+          <Link className={styles.link} to="/profile/orders">
             История заказов
           </Link>
           <Link className={styles.link} to="/" onClick={handleLogout}>
@@ -89,7 +95,9 @@ const ProfilePage = () => {
         {btnVisible ? (
           <div className={styles.buttons}>
             <Button htmlType="submit">Сохранить</Button>
-            <Button htmlType="button">Отмена</Button>
+            <Button onClick={handleSettingCancel} htmlType="button">
+              Отмена
+            </Button>
           </div>
         ) : (
           <></>
