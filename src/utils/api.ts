@@ -1,5 +1,5 @@
 import { BURGER_API_URL } from './const';
-import { ILoginUser, IRegisterUser, IResetPassData } from './interfaces';
+import { IEditUser, ILoginUser, IRegisterUser, IResetPassData } from './interfaces';
 import { checkResponse } from './utils';
 
 const updateToken = async () => {
@@ -105,7 +105,7 @@ const getUser = async () => {
   });
 };
 
-const editUser = async (userData: IRegisterUser) => {
+const editUser = async (userData: IEditUser) => {
   return fetchWithRefresh(`${BURGER_API_URL}/auth/user`, {
     method: 'PATCH',
     headers: {

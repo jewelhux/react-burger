@@ -59,6 +59,12 @@ interface IRegisterUser {
   name: string;
 }
 
+interface IEditUser {
+  email: string;
+  password?: string;
+  name: string;
+}
+
 interface ILoginUser {
   email: string;
   password: string;
@@ -92,4 +98,5 @@ export type {
   IAccessToken,
   ILoginUser,
   IResetPassData,
+  IEditUser,
 };

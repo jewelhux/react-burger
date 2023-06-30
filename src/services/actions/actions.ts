@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
 import { DATA_ADRESS } from '../../utils/const';
-import { ILoginUser, IOrder, IRegisterUser, IUser } from '../../utils/interfaces';
+import { ILoginUser, IOrder, IRegisterUser, IUser, IEditUser } from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
@@ -60,7 +60,7 @@ export const getUser = createAsyncThunk('auth/user', async (unknown, thunkAPI) =
   }
 });
 
-export const editUser = createAsyncThunk<IUser, IRegisterUser>(
+export const editUser = createAsyncThunk<IUser, IEditUser>(
   'auth/editUser',
   async (userData, thunkAPI) => {
     try {

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import styles from './ProfilePage.module.css';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { editUser, logoutUser } from '../../services/actions/actions';
+import { isValidEmail, isValidName, isValidPassword } from '../../utils/utils';
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -29,8 +30,15 @@ const ProfilePage = () => {
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert('Данные обновлены');
-    dispatch(editUser({ name: nameValue, email: emailValue, password: passValue }));
+    if (!isValidEmail(emailValue)) {
+      return alert('Неверный формат Email');
+    } else if (!isValidName(nameValue)) {
+      return alert('Имя должно быть от 3-х символов');
+    } else if (!isValidPassword(passValue) && passValue) {
+      return alert('Пароль должен быть от 6-ти символов');
+    } else {
+      dispatch(editUser({ name: nameValue, email: emailValue, password: passValue }));
+    }
   };
 
   return (
