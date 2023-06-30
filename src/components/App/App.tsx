@@ -10,7 +10,7 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import { OnlyAuth, OnlyUnAuth } from '../ProtectedRouteElement';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../services/store';
-import { checkUserAuth } from '../../services/actions/actions';
+import { checkUserAuth, fetchIngredients } from '../../services/actions/actions';
 import ProfileLayout from '../../Layout/ProfileLayout/ProfileLayout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal';
@@ -28,6 +28,7 @@ function App() {
 
   useEffect(() => {
     dispatch(checkUserAuth());
+    dispatch(fetchIngredients());
   }, [dispatch]);
 
   return (
