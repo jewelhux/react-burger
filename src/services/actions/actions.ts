@@ -5,21 +5,13 @@ import { ILoginUser, IOrder, IRegisterUser, IUser, IEditUser } from '../../utils
 import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
-  try {
-    return await fetch(DATA_ADRESS).then(checkResponse);
-  } catch (error) {
-    return new Error();
-  }
+  return await fetch(DATA_ADRESS).then(checkResponse);
 });
 
-export const placeOrder = createAsyncThunk<IOrder, string[], { rejectValue: Error }>(
+export const placeOrder = createAsyncThunk<IOrder, string[]>(
   'order/placeOrder',
-  async (ingredients, { rejectWithValue }) => {
-    try {
-      return await api.setOrder(ingredients);
-    } catch (error) {
-      return rejectWithValue(new Error('Failed to place order'));
-    }
+  async (ingredients) => {
+    return await api.setOrder(ingredients);
   }
 );
 
@@ -47,32 +39,24 @@ export const logoutUser = createAsyncThunk('auth/logout', async () => {
 });
 
 export const getUser = createAsyncThunk('auth/user', async (unknown, thunkAPI) => {
-  try {
-    const res = await api.getUser();
+  const res = await api.getUser();
 
-    if (!res.success) {
-      return thunkAPI.rejectWithValue('');
-    }
-
-    return res.user;
-  } catch (e) {
+  if (!res.success) {
     return thunkAPI.rejectWithValue('');
   }
+
+  return res.user;
 });
 
 export const editUser = createAsyncThunk<IUser, IEditUser>(
   'auth/editUser',
   async (userData, thunkAPI) => {
-    try {
-      const res = await api.editUser(userData);
+    const res = await api.editUser(userData);
 
-      if (!res.success) {
-        return thunkAPI.rejectWithValue('');
-      }
-      return res.user;
-    } catch (e) {
+    if (!res.success) {
       return thunkAPI.rejectWithValue('');
     }
+    return res.user;
   }
 );
 
