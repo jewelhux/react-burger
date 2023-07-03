@@ -10,11 +10,6 @@ import styles from './MainPage.module.css';
 
 const MainPage = () => {
   const allIngredients = useAppSelector((state) => state.allIngredients);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(fetchIngredients());
-  }, [dispatch]);
 
   return (
     <>
