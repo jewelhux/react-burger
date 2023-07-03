@@ -1,5 +1,5 @@
-const DATA_ADRESS = 'https://norma.nomoreparties.space/api/ingredients';
 const BURGER_API_URL = 'https://norma.nomoreparties.space/api';
+const DATA_ADRESS = `${BURGER_API_URL}/ingredients`;
 
 const OREDER_MOCK_DATA = {
   orderId: 1337,
