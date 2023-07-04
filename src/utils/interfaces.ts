@@ -37,10 +37,50 @@ interface IChangePositionIngredients {
   toIndex: number;
 }
 
-interface DragItem {
+interface IDragItem {
   index: number;
   id: string;
   type: string;
+}
+
+interface IResponseForgot {
+  success: boolean;
+  message: string;
+}
+
+interface IUser {
+  email: string;
+  name: string;
+}
+
+interface IRegisterUser {
+  email: string;
+  password: string;
+  name: string;
+}
+
+interface IEditUser {
+  email: string;
+  password?: string;
+  name: string;
+}
+
+interface ILoginUser {
+  email: string;
+  password: string;
+}
+
+interface IRefreshToken {
+  refreshToken: string;
+}
+
+interface IAccessToken {
+  accessToken: string;
+}
+
+interface IResetPassData {
+  password: string;
+  token: string;
 }
 
 export type {
@@ -50,5 +90,13 @@ export type {
   IExtData,
   IOrder,
   IChangePositionIngredients,
-  DragItem,
+  IDragItem,
+  IResponseForgot,
+  IRegisterUser,
+  IUser,
+  IRefreshToken,
+  IAccessToken,
+  ILoginUser,
+  IResetPassData,
+  IEditUser,
 };

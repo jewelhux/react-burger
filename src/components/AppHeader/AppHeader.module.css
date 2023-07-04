@@ -20,11 +20,14 @@
 
 .mainText {
   composes: text from global;
+  color: #FFF;
+  text-decoration: none;
   flex-grow: 0;
 }
 
 .mainTextDefault {
   composes: text text_color_inactive from global;
+  text-decoration: none;
   flex-grow: 0;
 }
 

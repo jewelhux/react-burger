@@ -10,6 +10,7 @@ import { IData } from '../../../utils/interfaces';
 import { useDrag } from 'react-dnd';
 import styles from './ProductItem.module.css';
 import { ITEM_DND_TYPE } from '../../../utils/const';
+import { Link, useLocation } from 'react-router-dom';
 
 interface IDataItemProps {
   dataItem: IData;
@@ -21,6 +22,7 @@ interface IDropResult {
 
 const ProductItem = ({ dataItem }: IDataItemProps) => {
   const burgersData = useAppSelector((state) => state.allIngredientsCurrentBurger);
+  const location = useLocation();
   const dispatch = useAppDispatch();
   const isBun = dataItem.type === 'bun';
 
@@ -64,17 +66,24 @@ const ProductItem = ({ dataItem }: IDataItemProps) => {
   };
 
   return (
-    <li className={styles.itemContainer} onClick={handleOpenPopup} ref={drag}>
-      {itemCount ? <Counter count={itemCount} size="default" extraClass="m-1" /> : <></>}
-      <div className={styles.itemImage}>
-        <img src={dataItem.image} alt="item" />
-      </div>
-      <div className={styles.itemPrice}>
-        <p className={styles.itemPriceText}>{dataItem.price}</p>
-        <CurrencyIcon type="primary" />
-      </div>
-      <p className={styles.itemName}>{dataItem.name}</p>
-    </li>
+    <Link
+      key={dataItem._id}
+      to={`/ingredients/${dataItem._id}`}
+      state={{ background: location }}
+      className={styles.link}
+    >
+      <li className={styles.itemContainer} onClick={handleOpenPopup} ref={drag}>
+        {itemCount ? <Counter count={itemCount} size="default" extraClass="m-1" /> : <></>}
+        <div className={styles.itemImage}>
+          <img src={dataItem.image} alt="item" />
+        </div>
+        <div className={styles.itemPrice}>
+          <p className={styles.itemPriceText}>{dataItem.price}</p>
+          <CurrencyIcon type="primary" />
+        </div>
+        <p className={styles.itemName}>{dataItem.name}</p>
+      </li>
+    </Link>
   );
 };
 

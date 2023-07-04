@@ -7,11 +7,14 @@ import OrderDetails from '../OrderDetails/OrderDetails';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { IExtData } from '../../utils/interfaces';
 import { placeOrder } from '../../services/actions/actions';
+import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = () => {
   const [constructorInModal, setIngredientInModal] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const burgersData = useAppSelector((state) => state.allIngredientsCurrentBurger);
+  const user = useAppSelector((state) => state.user.user);
 
   const totalPrice = useMemo(() => {
     const bun = burgersData.bun;
@@ -35,9 +38,12 @@ const BurgerConstructor = () => {
     const ingredientsId = burgersData.ingredients.map((item) => item._id);
 
     if (bunId) ingredientsId.push(bunId);
-
-    dispatch(placeOrder(ingredientsId));
-    setIngredientInModal(true);
+    if (!user) {
+      navigate('/login');
+    } else {
+      dispatch(placeOrder(ingredientsId));
+      setIngredientInModal(true);
+    }
   };
 
   return (

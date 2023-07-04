@@ -6,7 +6,7 @@ import {
 } from '../../../services/slice/allIngredientsCurrentBurgerSlice';
 import { useAppDispatch } from '../../../services/store';
 import { ITEM_DND_TYPE } from '../../../utils/const';
-import { DragItem, IExtData } from '../../../utils/interfaces';
+import { IDragItem, IExtData } from '../../../utils/interfaces';
 import { BurgerElement } from '../BurgerElement/BurgerElement';
 import { useDrag, useDrop } from 'react-dnd';
 import type { Identifier, XYCoord } from 'dnd-core';
@@ -20,14 +20,14 @@ interface IDataItemProps {
 const ConstructorItem = ({ dataItem, indexElement }: IDataItemProps) => {
   const dispatch = useAppDispatch();
   const ref = useRef<HTMLDivElement>(null);
-  const [, drop] = useDrop<DragItem, void, { handlerId: Identifier | null }>({
+  const [, drop] = useDrop<IDragItem, void, { handlerId: Identifier | null }>({
     accept: ITEM_DND_TYPE.SORT,
     collect(monitor) {
       return {
         handlerId: monitor.getHandlerId(),
       };
     },
-    hover(item: DragItem, monitor) {
+    hover(item: IDragItem, monitor) {
       if (!ref.current) {
         return;
       }

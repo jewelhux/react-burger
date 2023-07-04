@@ -1,31 +1,67 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { checkResponse } from '../../utils/burger-api';
+import { api } from '../../utils/api';
 import { DATA_ADRESS } from '../../utils/const';
-import { IData } from '../../utils/interfaces';
+import { ILoginUser, IOrder, IRegisterUser, IUser, IEditUser } from '../../utils/interfaces';
+import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
-  try {
-    return await fetch(DATA_ADRESS).then(checkResponse);
-  } catch (error) {
-    return new Error();
-  }
+  return await fetch(DATA_ADRESS).then(checkResponse);
 });
 
-export const placeOrder = createAsyncThunk<IData[], string[], { rejectValue: Error }>(
+export const placeOrder = createAsyncThunk<IOrder, string[]>(
   'order/placeOrder',
-  async (ingredients, { rejectWithValue }) => {
-    try {
-      const response = await fetch('https://norma.nomoreparties.space/api/orders', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ingredients }),
-      });
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      return rejectWithValue(new Error('Failed to place order'));
-    }
+  async (ingredients) => {
+    return await api.setOrder(ingredients);
   }
 );
+
+export const registerUser = createAsyncThunk<IUser, IRegisterUser>(
+  'auth/register',
+  async (userData) => {
+    const res = await api.register(userData);
+    localStorage.setItem('accessToken', res.accessToken);
+    localStorage.setItem('refreshToken', res.refreshToken);
+    return res.user;
+  }
+);
+
+export const loginUser = createAsyncThunk<IUser, ILoginUser>('auth/login', async (userData) => {
+  const res = await api.login(userData);
+  localStorage.setItem('accessToken', res.accessToken);
+  localStorage.setItem('refreshToken', res.refreshToken);
+  return res.user;
+});
+
+export const logoutUser = createAsyncThunk('auth/logout', async () => {
+  await api.logout();
+  localStorage.removeItem('accessToken');
+  localStorage.removeItem('refreshToken');
+});
+
+export const getUser = createAsyncThunk('auth/user', async (unknown, thunkAPI) => {
+  const res = await api.getUser();
+
+  if (!res.success) {
+    return thunkAPI.rejectWithValue('');
+  }
+
+  return res.user;
+});
+
+export const editUser = createAsyncThunk<IUser, IEditUser>(
+  'auth/editUser',
+  async (userData, thunkAPI) => {
+    const res = await api.editUser(userData);
+
+    if (!res.success) {
+      return thunkAPI.rejectWithValue('');
+    }
+    return res.user;
+  }
+);
+
+export const checkUserAuth = createAsyncThunk('auth/checkUserAuth', async (unknown, thunkAPI) => {
+  if (localStorage.getItem('accessToken')) {
+    await thunkAPI.dispatch(getUser());
+  }
+});

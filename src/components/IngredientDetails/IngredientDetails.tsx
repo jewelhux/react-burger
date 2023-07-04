@@ -1,34 +1,35 @@
 import React from 'react';
-import { IData } from '../../utils/interfaces';
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../../services/store';
 import styles from './IngredientDetails.module.css';
 
-interface IIngredientDetailsProps {
-  item: IData;
-}
+const IngredientDetails = () => {
+  const allIngredients = useAppSelector((state) => state.allIngredients.ingredients);
+  const params = useParams();
+  const currentIngredient = allIngredients.filter((item) => item._id === params.ingredientId)[0];
 
-const IngredientDetails = ({ item }: IIngredientDetailsProps) => {
   return (
     <div className={styles.contentMain}>
       <div className={styles.contentMainImage}>
-        <img src={item.image}></img>
+        <img src={currentIngredient?.image ?? '-'}></img>
       </div>
-      <h3>{item.name}</h3>
+      <h3>{currentIngredient?.name ?? '-'}</h3>
       <ul className={styles.contentListInfo}>
         <li className={styles.contentListItem}>
           <p>Калории,ккал</p>
-          <p>{item.calories}</p>
+          <p>{currentIngredient?.calories ?? '-'}</p>
         </li>
         <li className={styles.contentListItem}>
           <p>Белки,г</p>
-          <p>{item.proteins}</p>
+          <p>{currentIngredient?.proteins ?? '-'}</p>
         </li>
         <li className={styles.contentListItem}>
           <p>Жиры,г</p>
-          <p>{item.fat}</p>
+          <p>{currentIngredient?.fat ?? '-'}</p>
         </li>
         <li className={styles.contentListItem}>
           <p>Углеводы,г</p>
-          <p>{item.carbohydrates}</p>
+          <p>{currentIngredient?.carbohydrates}</p>
         </li>
       </ul>
     </div>
