@@ -5,7 +5,7 @@ import styles from './ForgotPassPage.module.css';
 import { api } from '../../utils/api';
 
 const ForgotPassPage = () => {
-  const [emailValue, setEmailValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState<string>('');
   const navigate = useNavigate();
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {

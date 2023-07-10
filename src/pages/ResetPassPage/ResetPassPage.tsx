@@ -5,8 +5,8 @@ import styles from './ResetPassPage.module.css';
 import { api } from '../../utils/api';
 
 const ResetPassPage = () => {
-  const [codeValue, setCodeValue] = React.useState('');
-  const [passValue, setPassValue] = React.useState('');
+  const [codeValue, setCodeValue] = React.useState<string>('');
+  const [passValue, setPassValue] = React.useState<string>('');
   const navigate = useNavigate();
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {

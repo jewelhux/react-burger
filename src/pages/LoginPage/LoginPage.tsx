@@ -11,8 +11,8 @@ import styles from './LoginPage.module.css';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
-  const [emailValue, setEmailValue] = React.useState('');
-  const [passValue, setPassValue] = React.useState('');
+  const [emailValue, setEmailValue] = React.useState<string>('');
+  const [passValue, setPassValue] = React.useState<string>('');
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();

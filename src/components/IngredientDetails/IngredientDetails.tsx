@@ -1,10 +1,11 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../services/store';
+import { IData } from '../../utils/interfaces';
 import styles from './IngredientDetails.module.css';
 
 const IngredientDetails = () => {
-  const allIngredients = useAppSelector((state) => state.allIngredients.ingredients);
+  const allIngredients = useAppSelector<IData[]>((state) => state.allIngredients.ingredients);
   const params = useParams();
   const currentIngredient = allIngredients.filter((item) => item._id === params.ingredientId)[0];
 

@@ -5,15 +5,16 @@ import styles from './ProfilePage.module.css';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { editUser, logoutUser } from '../../services/actions/actions';
 import { isValidEmail, isValidName, isValidPassword } from '../../utils/utils';
+import { IUser } from '../../utils/interfaces';
 
 const ProfilePage = () => {
   const dispatch = useAppDispatch();
-  const userData = useAppSelector((store) => store.user.user);
+  const userData = useAppSelector<IUser | null>((store) => store.user.user);
 
-  const [nameValue, setNameValue] = React.useState(userData!.name);
-  const [emailValue, setEmailValue] = React.useState(userData!.email);
-  const [passValue, setPassValue] = React.useState('');
-  const [btnVisible, setBtnVisible] = React.useState(false);
+  const [nameValue, setNameValue] = React.useState<string>(userData!.name);
+  const [emailValue, setEmailValue] = React.useState<string>(userData!.email);
+  const [passValue, setPassValue] = React.useState<string>('');
+  const [btnVisible, setBtnVisible] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (nameValue !== userData?.name || emailValue !== userData?.email || passValue) {
