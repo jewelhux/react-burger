@@ -7,12 +7,15 @@ import ConstructorItem from '../ConstructorItem/ConstructorItem';
 import { useDrop } from 'react-dnd';
 import styles from './ConstructorList.module.css';
 import { ITEM_DND_TYPE } from '../../../utils/const';
+import { IData } from '../../../utils/interfaces';
 
 const ConstructorList = () => {
   const allIngredientsCurrentBurger = useAppSelector(
     (state) => state.allIngredientsCurrentBurger.ingredients
   );
-  const currentBurgerBun = useAppSelector((state) => state.allIngredientsCurrentBurger.bun);
+  const currentBurgerBun = useAppSelector<IData | null>(
+    (state) => state.allIngredientsCurrentBurger.bun
+  );
   const [, drop] = useDrop(() => ({
     accept: ITEM_DND_TYPE.BOX,
     drop: () => ({ name: 'Dustbin' }),

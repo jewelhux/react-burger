@@ -1,5 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../services/store';
+import { IUser } from '../utils/interfaces';
 import Loader from './Loader/Loader';
 
 interface ProtectedProps {
@@ -11,8 +12,8 @@ const ProtectedRoute = ({ onlyUnAuth = false, component }: ProtectedProps) => {
   // isAuthChecked это флаг, показывающий что проверка токена произведена
   // при этом результат этой проверки не имеет значения, важно только,
   // что сам факт проверки имел место.
-  const isAuthChecked = useAppSelector((store) => store.user.isAuthChecked);
-  const user = useAppSelector((store) => store.user.user);
+  const isAuthChecked = useAppSelector<boolean>((store) => store.user.isAuthChecked);
+  const user = useAppSelector<IUser | null>((store) => store.user.user);
   const location = useLocation();
 
   if (!isAuthChecked) {

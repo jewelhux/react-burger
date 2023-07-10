@@ -5,7 +5,7 @@ import styles from './BurgerConstructor.module.css';
 import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { useAppDispatch, useAppSelector } from '../../services/store';
-import { IExtData } from '../../utils/interfaces';
+import { IExtData, IUser } from '../../utils/interfaces';
 import { placeOrder } from '../../services/actions/actions';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const BurgerConstructor = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const burgersData = useAppSelector((state) => state.allIngredientsCurrentBurger);
-  const user = useAppSelector((state) => state.user.user);
+  const user = useAppSelector<IUser | null>((state) => state.user.user);
 
   const totalPrice = useMemo(() => {
     const bun = burgersData.bun;

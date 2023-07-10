@@ -12,9 +12,9 @@ import { useAppDispatch } from '../../services/store';
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch();
-  const [nameValue, setNameValue] = React.useState('');
-  const [emailValue, setEmailValue] = React.useState('');
-  const [passValue, setPassValue] = React.useState('');
+  const [nameValue, setNameValue] = React.useState<string>('');
+  const [emailValue, setEmailValue] = React.useState<string>('');
+  const [passValue, setPassValue] = React.useState<string>('');
 
   const handleSubmitForm = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
