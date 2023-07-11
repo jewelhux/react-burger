@@ -1,0 +1,10 @@
+.activeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-right: 10px;
+  align-items: center;
+  overflow-y: scroll;
+  max-height: 800px;
+  composes: custom-scroll from global;
+}
