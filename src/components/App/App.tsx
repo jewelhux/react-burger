@@ -15,6 +15,9 @@ import ProfileLayout from '../../Layout/ProfileLayout/ProfileLayout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
+import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
+import FeedPage from '../../pages/FeedPage/FeedPage';
+import FeedPageDetails from '../../pages/FeedPage/FeedPageDetails/FeedPageDetails';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -44,6 +47,10 @@ function App() {
           <Route path="/profile" element={<OnlyAuth component={<ProfileLayout />} />}>
             <Route index element={<OnlyAuth component={<ProfilePage />} />} />
             <Route path="orders" element={<OnlyAuth component={<ProfilePage />} />} />
+          </Route>
+          <Route path="/feed" element={<OnlyAuth component={<FeedLayout />} />}>
+            <Route index element={<OnlyAuth component={<FeedPage />} />} />
+            <Route path=":feedId" element={<OnlyAuth component={<FeedPageDetails />} />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
