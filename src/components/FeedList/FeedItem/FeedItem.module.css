@@ -1,6 +1,38 @@
 .itemContainer {
   border: 1px solid #FFF;
-  max-width: 70%;
+  max-width: 90%;
+  padding: 24px;
   width: 100%;
-  padding: 50px 100px;
+}
+
+.imageContainer {
+  display: flex;
+}
+
+.image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border: 3px solid #4C4CFF;
+  border-radius: 50%;
+}
+
+.topSection {
+  display: flex;
+}
+
+.bottomSection {
+  display: flex;
+}
+
+.priceContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.price {
+  composes: text text_type_digits-medium from global;
+  font-size: 28px;
 }
