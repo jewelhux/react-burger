@@ -26,9 +26,12 @@ const FeedItem = () => {
       </div>
       <h3>Death Star Starship Main бургер</h3>
       <div className={styles.bottomSection}>
-        <div className={styles.imageContainer}>
-          {allIngredientsCurrentBurger.slice(0, 4).map((item, index) => (
-            <img className={styles.image} src={item.image_mobile} key={index} />
+        <div className={styles.allImageContainer}>
+          {allIngredientsCurrentBurger.slice(0, 6).map((item, index) => (
+            <div className={styles.imageContainer} key={index}>
+              <img className={styles.image} src={item.image_mobile} key={index} />
+              {index === 5 ? <span className={styles.lastImagetext}>+5</span> : <></>}
+            </div>
           ))}
         </div>
         <div className={styles.priceContainer}>
