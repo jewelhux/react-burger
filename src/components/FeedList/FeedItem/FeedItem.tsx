@@ -10,8 +10,9 @@ const FeedItem = () => {
   return (
     <div className={styles.itemContainer}>
       <div className={styles.topSection}>
-        <p>#034535</p>
+        <p className={styles.orderNumber}>#034535</p>
         <FormattedDate
+          className={styles.time}
           date={
             new Date(
               today.getFullYear(),

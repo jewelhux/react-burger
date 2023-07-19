@@ -1,0 +1,42 @@
+.contentMain {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.orderNameSection {
+  color: #F2F2F3;
+  font-size: 24px;
+}
+
+.actualOrder {
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.orderFinishItem, .orderProcessItem {
+  composes: text text_type_digits-default from global;
+}
+
+.orderFinishList, .orderProcessList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.orderFinishItem {
+  color: #00CCCC;
+}
+
+.allTimeOrderCount, .todaylOrderCount {
+  composes: text text_type_digits-large from global;
+  text-shadow: 0px 0px 25px #4c4cff;
+}
+
+.allTimeOrder, .todaylOrder, .orderFinish, .orderProcess {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
