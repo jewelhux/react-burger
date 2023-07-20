@@ -1,9 +1,13 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import { useAppSelector } from '../../../services/store';
-import styles from './FeedItem.module.css';
+import styles from './OrderItem.module.css';
 
-const FeedItem = () => {
+interface IProps {
+  isMatch: boolean;
+}
+
+const OrderItem = ({ isMatch }: IProps) => {
   const today = new Date();
   const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
 
@@ -26,6 +30,7 @@ const FeedItem = () => {
         />
       </div>
       <h3>Death Star Starship Main бургер</h3>
+      {isMatch ? <p>Статус заказа</p> : <></>}
       <div className={styles.bottomSection}>
         <div className={styles.allImageContainer}>
           {allIngredientsCurrentBurger.slice(0, 6).map((item, index) => (
@@ -44,4 +49,4 @@ const FeedItem = () => {
   );
 };
 
-export default FeedItem;
+export default OrderItem;

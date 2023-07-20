@@ -18,6 +18,7 @@ import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
 import FeedPage from '../../pages/FeedPage/FeedPage';
 import FeedPageDetails from '../../pages/FeedPage/FeedPageDetails/FeedPageDetails';
+import OrdersPage from '../../pages/OrderPage/OrdersPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -38,7 +39,7 @@ function App() {
     <>
       <Routes location={background || location}>
         <Route path="/" element={<MainLayout />}>
-          <Route index element={<FeedPage />} />
+          <Route index element={<MainPage />} />
           <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
           <Route path="/register" element={<OnlyUnAuth component={<RegisterPage />} />} />
           <Route path="/forgot-password" element={<OnlyUnAuth component={<ForgotPassPage />} />} />
@@ -46,7 +47,7 @@ function App() {
           <Route path="/ingredients/:ingredientId" element={<IngredientDetails />} />
           <Route path="/profile" element={<OnlyAuth component={<ProfileLayout />} />}>
             <Route index element={<OnlyAuth component={<ProfilePage />} />} />
-            <Route path="orders" element={<OnlyAuth component={<ProfilePage />} />} />
+            <Route path="orders" element={<OnlyAuth component={<OrdersPage />} />} />
           </Route>
           <Route path="/feed" element={<OnlyAuth component={<FeedLayout />} />}>
             <Route index element={<OnlyAuth component={<FeedPage />} />} />

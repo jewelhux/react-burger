@@ -23,7 +23,9 @@ const AppHeader = () => {
         </div>
         <div className={styles.menuItem}>
           <ListIcon type="secondary" />
-          <p className={styles.mainTextDefault}>Лента заказов</p>
+          <Link to="/feed" className={styles.mainTextDefault}>
+            Лента заказов
+          </Link>
         </div>
       </div>
       <div className={styles.menuLogo}>
