@@ -5,7 +5,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../services/actions/actions';
+import { loginUser } from '../../services/actions';
 import { useAppDispatch } from '../../services/store';
 import styles from './LoginPage.module.css';
 

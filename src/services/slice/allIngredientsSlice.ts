@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { IData } from '../../utils/interfaces';
-import { fetchIngredients } from '../actions/actions';
+import { fetchIngredients } from '../actions';
 
 interface ISlice {
   ingredients: IData[];

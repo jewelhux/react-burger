@@ -1,22 +1,19 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import allIngredientsCurrentBurgerSlice from './slice/allIngredientsCurrentBurgerSlice';
-import allIngredientsSlice from './slice/allIngredientsSlice';
-import currentIngredientSlice from './slice/currentIngredientSlice';
-import currentOrderSlice from './slice/currentOrderSlice';
-import userSlice from './slice/userSlice';
+import { WS_FEED_ACTHIONS } from '../utils/const';
+import { socketMiddleware } from './middleware/socketMiddleware';
+import comboReducer from './reducers';
+
+const feedMiddleware = socketMiddleware(WS_FEED_ACTHIONS);
 
 export const store = configureStore({
-  reducer: {
-    allIngredientsCurrentBurger: allIngredientsCurrentBurgerSlice,
-    allIngredients: allIngredientsSlice,
-    currentIngredient: currentIngredientSlice,
-    currentOrder: currentOrderSlice,
-    user: userSlice,
+  reducer: comboReducer,
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware().concat([feedMiddleware]);
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof comboReducer>;
 export type AppDispatch = typeof store.dispatch;
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

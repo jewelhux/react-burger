@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { IExtData, IUser } from '../../utils/interfaces';
-import { placeOrder } from '../../services/actions/actions';
+import { placeOrder } from '../../services/actions';
 import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = () => {

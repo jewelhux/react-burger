@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './ProfileLayout.module.css';
 import { useAppDispatch } from '../../services/store';
-import { logoutUser } from '../../services/actions/actions';
+import { logoutUser } from '../../services/actions';
 
 function ProfileLayout() {
   const dispatch = useAppDispatch();

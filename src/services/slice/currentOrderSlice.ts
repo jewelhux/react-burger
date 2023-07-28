@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { placeOrder } from '../actions/actions';
+import { placeOrder } from '../actions';
 import { IOrder } from '../../utils/interfaces';
 
 interface ISlice {

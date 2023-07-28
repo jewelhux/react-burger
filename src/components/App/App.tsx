@@ -10,7 +10,7 @@ import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
 import { OnlyAuth, OnlyUnAuth } from '../ProtectedRouteElement';
 import { useEffect } from 'react';
 import { useAppDispatch } from '../../services/store';
-import { checkUserAuth, fetchIngredients } from '../../services/actions/actions';
+import { checkUserAuth, fetchIngredients } from '../../services/actions';
 import ProfileLayout from '../../Layout/ProfileLayout/ProfileLayout';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Modal from '../Modal/Modal';
@@ -49,9 +49,9 @@ function App() {
             <Route index element={<OnlyAuth component={<ProfilePage />} />} />
             <Route path="orders" element={<OnlyAuth component={<OrdersPage />} />} />
           </Route>
-          <Route path="/feed" element={<OnlyAuth component={<FeedLayout />} />}>
-            <Route index element={<OnlyAuth component={<FeedPage />} />} />
-            <Route path=":feedId" element={<OnlyAuth component={<FeedPageDetails />} />} />
+          <Route path="/feed" element={<FeedLayout />}>
+            <Route index element={<FeedPage />} />
+            <Route path=":feedId" element={<FeedPageDetails />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

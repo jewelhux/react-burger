@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
 import styles from './ProfilePage.module.css';
 import { useAppDispatch, useAppSelector } from '../../services/store';
-import { editUser } from '../../services/actions/actions';
+import { editUser } from '../../services/actions';
 import { isValidEmail, isValidName, isValidPassword } from '../../utils/utils';
 import { IUser } from '../../utils/interfaces';
 
