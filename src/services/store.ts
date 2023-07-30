@@ -5,11 +5,12 @@ import { socketMiddleware } from './middleware/socketMiddleware';
 import comboReducer from './reducers';
 
 const feedMiddleware = socketMiddleware(WS_FEED_ACTHIONS);
+const profileMiddleware = socketMiddleware(WS_FEED_ACTHIONS); // ТУТ БУДУТ СВОИ ЭКШЕНЫ ПОКА ВРЕММЕННЫЙ ДУБЛЬ
 
 export const store = configureStore({
   reducer: comboReducer,
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat([feedMiddleware]);
+    return getDefaultMiddleware().concat([feedMiddleware, profileMiddleware]);
   },
 });
 

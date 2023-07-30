@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ActionCreatorWithoutPayload, ActionCreatorWithPayload } from '@reduxjs/toolkit';
 import { Middleware } from 'redux';
 import { RootState } from '../store';
@@ -5,12 +6,12 @@ import { RootState } from '../store';
 export type TwsActionTypes = {
   wsConnect: ActionCreatorWithPayload<string>;
   wsDisconnect: ActionCreatorWithoutPayload;
-  wsSendMessage?: ActionCreatorWithPayload<unknown>;
+  wsSendMessage?: ActionCreatorWithPayload<any>;
   wsConnecting: ActionCreatorWithoutPayload;
   onOpen: ActionCreatorWithoutPayload;
   onClose: ActionCreatorWithoutPayload;
   onError: ActionCreatorWithPayload<string>;
-  onMessage: ActionCreatorWithPayload<unknown>;
+  onMessage: ActionCreatorWithPayload<any>;
 };
 
 export const socketMiddleware = (wsActions: TwsActionTypes): Middleware<object, RootState> => {

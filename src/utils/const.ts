@@ -6,7 +6,7 @@ import {
   wsClose as socketFeedClose,
   wsError as socketFeedError,
   wsMessage as socketFeedessage,
-} from '../services/actions/socketFeed';
+} from '../services/actions/socketFeedActhion';
 
 const BURGER_API_URL = 'https://norma.nomoreparties.space/api';
 const DATA_ADRESS = `${BURGER_API_URL}/ingredients`;
