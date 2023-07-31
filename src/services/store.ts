@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import { WS_FEED_ACTHIONS } from '../utils/const';
+import { WS_FEED_ACTIONS, WS_PROFILE_ACTIONS } from '../utils/const';
 import { socketMiddleware } from './middleware/socketMiddleware';
 import comboReducer from './reducers';
 
-const feedMiddleware = socketMiddleware(WS_FEED_ACTHIONS);
-const profileMiddleware = socketMiddleware(WS_FEED_ACTHIONS); // ТУТ БУДУТ СВОИ ЭКШЕНЫ ПОКА ВРЕММЕННЫЙ ДУБЛЬ
+const feedMiddleware = socketMiddleware(WS_FEED_ACTIONS);
+const profileMiddleware = socketMiddleware(WS_PROFILE_ACTIONS);
 
 export const store = configureStore({
   reducer: comboReducer,

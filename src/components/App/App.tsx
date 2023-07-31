@@ -19,6 +19,7 @@ import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
 import FeedPage from '../../pages/FeedPage/FeedPage';
 import FeedPageDetails from '../../pages/FeedPage/FeedPageDetails/FeedPageDetails';
 import OrdersPage from '../../pages/OrderPage/OrdersPage';
+import { wsConnectingFeed } from '../../services/actions/socketFeedActions';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -33,6 +34,7 @@ function App() {
   useEffect(() => {
     dispatch(checkUserAuth());
     dispatch(fetchIngredients());
+    dispatch(wsConnectingFeed());
   }, [dispatch]);
 
   return (
