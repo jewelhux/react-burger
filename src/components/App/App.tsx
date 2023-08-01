@@ -3,7 +3,7 @@ import MainPage from '../../pages/MainPage/MainPage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import MainLayout from '../../Layout/Mainlayout/MainLayout';
 import RegisterPage from '../../pages/RegisterPage/RegisterPage';
-import ProfilePage from '../../pages/ProfilePage/ProfilePage';
+import ProfileSettingPage from '../../pages/ProfileSettingPage/ProfileSettingPage';
 import ResetPassPage from '../../pages/ResetPassPage/ResetPassPage';
 import ForgotPassPage from '../../pages/ForgotPassPage/ForgotPassPage';
 import NotFoundPage from '../../pages/NotFoundPage/NotFoundPage';
@@ -17,17 +17,27 @@ import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
 import FeedPage from '../../pages/FeedPage/FeedPage';
-import { wsConnectingFeed } from '../../services/actions/socketFeedActions';
-import ProfileOrdersPage from '../../pages/OrderPage/ProfileOrdersPage';
+import ProfileOrdersPage from '../../pages/ProfileOrdersPage/ProfileOrdersPage';
 import OrderInfoPage from '../../pages/OrderInfoPage/OrderInfoPage';
+import { wsMessageFeed } from '../../services/actions/socketFeedActions';
 
 function App() {
+  const ws = new WebSocket('wss://norma.nomoreparties.space/orders/all');
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const backgroundIngredients = location.state && location.state.backgroundIngredients;
   const backgroundProfileOrders = location.state && location.state.backgroundProfileOrders;
   const backgroundFeedOrders = location.state && location.state.backgroundFeedOrders;
+
+  ws.onopen = () => {
+    console.log('Соединение установление');
+  };
+
+  ws.onmessage = (event: MessageEvent) => {
+    const wsData = JSON.parse(event.data);
+    dispatch(wsMessageFeed(wsData.orders));
+  };
 
   const handleModalClose = () => {
     navigate(-1);
@@ -36,7 +46,6 @@ function App() {
   useEffect(() => {
     dispatch(checkUserAuth());
     dispatch(fetchIngredients());
-    dispatch(wsConnectingFeed());
   }, [dispatch]);
 
   return (
@@ -54,7 +63,7 @@ function App() {
           <Route path="/reset-password" element={<OnlyUnAuth component={<ResetPassPage />} />} />
           <Route path="/ingredients/:ingredientId" element={<IngredientDetails />} />
           <Route path="/profile" element={<OnlyAuth component={<ProfileLayout />} />}>
-            <Route index element={<OnlyAuth component={<ProfilePage />} />} />
+            <Route index element={<OnlyAuth component={<ProfileSettingPage />} />} />
             <Route path="orders" element={<OnlyAuth component={<ProfileOrdersPage />} />} />
           </Route>
           <Route

@@ -83,6 +83,15 @@ interface IResetPassData {
   token: string;
 }
 
+interface ISocketOrder {
+  ingredients: string[];
+  _id: string;
+  status: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
 export type {
   IData,
   IOrderData,
@@ -99,4 +108,5 @@ export type {
   ILoginUser,
   IResetPassData,
   IEditUser,
+  ISocketOrder,
 };

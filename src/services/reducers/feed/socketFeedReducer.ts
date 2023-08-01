@@ -1,36 +1,42 @@
 import { createReducer } from '@reduxjs/toolkit';
+import { WebsocketStatus } from '../../../utils/type';
+import { ISocketOrder } from '../../../utils/interfaces';
 import {
-  wsConnectingFeed,
-  wsOpenFeed,
   wsCloseFeed,
+  wsConnectingFeed,
   wsErrorFeed,
+  wsMessageFeed,
+  wsOpenFeed,
 } from '../../actions/socketFeedActions';
 
-export type socketFeedStore = {
+export type FeedOrdersStore = {
+  status: WebsocketStatus;
   connectionError: string;
+  orderList: ISocketOrder[];
 };
 
-const initialState: socketFeedStore = {
+const initialState: FeedOrdersStore = {
+  status: WebsocketStatus.OFFLINE,
   connectionError: '',
+  orderList: [],
 };
 
 export const socketFeedReducer = createReducer(initialState, (builder) => {
   builder
-    .addCase(wsConnectingFeed, () => {
-      // state.status = WebsocketStatus.CONNECTING;
-      console.log('wsConnectingFeed');
+    .addCase(wsConnectingFeed, (state) => {
+      state.status = WebsocketStatus.CONNECTING;
     })
     .addCase(wsOpenFeed, (state) => {
-      // state.status = WebsocketStatus.ONLINE;
+      state.status = WebsocketStatus.ONLINE;
       state.connectionError = '';
-      console.log('wsOpenFeed');
     })
-    .addCase(wsCloseFeed, () => {
-      console.log('wsCloseFeed');
-      // state.status = WebsocketStatus.OFFLINE;
+    .addCase(wsCloseFeed, (state) => {
+      state.status = WebsocketStatus.OFFLINE;
     })
     .addCase(wsErrorFeed, (state, action) => {
-      console.log('wsErrorFeed');
       state.connectionError = action.payload;
+    })
+    .addCase(wsMessageFeed, (state, action) => {
+      state.orderList = action.payload;
     });
 });

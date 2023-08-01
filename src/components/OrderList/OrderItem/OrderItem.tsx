@@ -2,13 +2,15 @@ import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burge
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../../services/store';
+import { ISocketOrder } from '../../../utils/interfaces';
 import styles from './OrderItem.module.css';
 
 interface IProps {
+  orderItem: ISocketOrder;
   isMatchProfileOrders: boolean;
 }
 
-const OrderItem = ({ isMatchProfileOrders }: IProps) => {
+const OrderItem = ({ isMatchProfileOrders, orderItem }: IProps) => {
   const today = new Date();
   const location = useLocation();
   const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
@@ -25,7 +27,7 @@ const OrderItem = ({ isMatchProfileOrders }: IProps) => {
       }
     >
       <div className={styles.topSection}>
-        <p className={styles.orderNumber}>#034535</p>
+        <p className={styles.orderNumber}>#{orderItem.number}</p>
         <FormattedDate
           className={styles.time}
           date={

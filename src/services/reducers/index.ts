@@ -13,8 +13,8 @@ const comboReducer = combineReducers({
   currentIngredient: currentIngredientSlice,
   currentOrder: currentOrderSlice,
   user: userSlice,
-  feed: socketFeedReducer,
-  profile: socketProfileReducer,
+  feedOrders: socketFeedReducer,
+  profileOrders: socketProfileReducer,
 });
 
 export default comboReducer;

@@ -1,17 +1,22 @@
 import React from 'react';
 import { useMatch } from 'react-router-dom';
 import { useAppSelector } from '../../services/store';
+import { ISocketOrder } from '../../utils/interfaces';
 import OrderItem from './OrderItem/OrderItem';
 import styles from './OrderList.module.css';
 
-const OrderList = () => {
+interface IProps {
+  orderList: ISocketOrder[];
+}
+
+const OrderList = ({ orderList }: IProps) => {
   const match = useMatch('/profile/orders');
-  const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
+  console.log(orderList);
 
   return (
     <div className={styles.activeContainer}>
-      {allIngredientsCurrentBurger.map((item, index) => (
-        <OrderItem key={index} isMatchProfileOrders={match ? true : false} />
+      {orderList.map((item) => (
+        <OrderItem key={item._id} isMatchProfileOrders={match ? true : false} orderItem={item} />
       ))}
     </div>
   );

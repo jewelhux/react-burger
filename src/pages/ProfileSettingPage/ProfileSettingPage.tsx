@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components';
-import styles from './ProfilePage.module.css';
+import styles from './ProfileSettingPage.module.css';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { editUser } from '../../services/actions';
 import { isValidEmail, isValidName, isValidPassword } from '../../utils/utils';
 import { IUser } from '../../utils/interfaces';
 
-const ProfilePage = () => {
+const ProfileSettingPage = () => {
   const dispatch = useAppDispatch();
   const userData = useAppSelector<IUser | null>((store) => store.user.user);
 
@@ -84,4 +84,4 @@ const ProfilePage = () => {
   );
 };
 
-export default ProfilePage;
+export default ProfileSettingPage;
