@@ -17,9 +17,9 @@ import Modal from '../Modal/Modal';
 import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
 import FeedPage from '../../pages/FeedPage/FeedPage';
-import FeedPageDetails from '../../pages/FeedPage/FeedPageDetails/FeedPageDetails';
-import OrdersPage from '../../pages/OrderPage/OrdersPage';
 import { wsConnectingFeed } from '../../services/actions/socketFeedActions';
+import OrderDetailsPage from '../../pages/OrderDetailsPage/OrderDetailsPage';
+import ProfileOrdersPage from '../../pages/OrderPage/ProfileOrdersPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -49,11 +49,15 @@ function App() {
           <Route path="/ingredients/:ingredientId" element={<IngredientDetails />} />
           <Route path="/profile" element={<OnlyAuth component={<ProfileLayout />} />}>
             <Route index element={<OnlyAuth component={<ProfilePage />} />} />
-            <Route path="orders" element={<OnlyAuth component={<OrdersPage />} />} />
+            <Route path="orders" element={<OnlyAuth component={<ProfileOrdersPage />} />} />
           </Route>
-          <Route path="/feed" element={<FeedLayout />}>
+          <Route
+            path="/profile/orders/:ordersId"
+            element={<OnlyAuth component={<OrderDetailsPage />} />}
+          />
+          <Route path="feed" element={<FeedLayout />}>
             <Route index element={<FeedPage />} />
-            <Route path=":feedId" element={<FeedPageDetails />} />
+            <Route path=":feedId" element={<OrderDetailsPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />

@@ -1,9 +1,8 @@
 import React from 'react';
 import OrderList from '../../components/OrderList/OrderList';
-import styles from './OrdersPage.module.css';
 
-const OrdersPage = () => {
+const ProfileOrdersPage = () => {
   return <OrderList />;
 };
 
-export default OrdersPage;
+export default ProfileOrdersPage;

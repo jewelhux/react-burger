@@ -1,18 +1,20 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../services/store';
 import styles from './OrderItem.module.css';
 
 interface IProps {
-  isMatch: boolean;
+  isMatchProfileOrders: boolean;
 }
 
-const OrderItem = ({ isMatch }: IProps) => {
+const OrderItem = ({ isMatchProfileOrders }: IProps) => {
   const today = new Date();
   const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
+  const path = isMatchProfileOrders ? '/profile/orders/123' : '/feed/123';
 
   return (
-    <div className={styles.itemContainer}>
+    <Link className={styles.itemContainer} to={path}>
       <div className={styles.topSection}>
         <p className={styles.orderNumber}>#034535</p>
         <FormattedDate
@@ -30,7 +32,7 @@ const OrderItem = ({ isMatch }: IProps) => {
         />
       </div>
       <h3>Death Star Starship Main бургер</h3>
-      {isMatch ? <p>Статус заказа</p> : <></>}
+      {isMatchProfileOrders ? <p>Статус заказа</p> : <></>}
       <div className={styles.bottomSection}>
         <div className={styles.allImageContainer}>
           {allIngredientsCurrentBurger.slice(0, 6).map((item, index) => (
@@ -45,7 +47,7 @@ const OrderItem = ({ isMatch }: IProps) => {
           <p className={styles.price}>12</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

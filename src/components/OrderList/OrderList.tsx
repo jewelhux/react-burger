@@ -1,7 +1,7 @@
 import React from 'react';
 import { useMatch } from 'react-router-dom';
 import { useAppSelector } from '../../services/store';
-import FeedItem from './OrderItem/OrderItem';
+import OrderItem from './OrderItem/OrderItem';
 import styles from './OrderList.module.css';
 
 const OrderList = () => {
@@ -11,7 +11,7 @@ const OrderList = () => {
   return (
     <div className={styles.activeContainer}>
       {allIngredientsCurrentBurger.map((item, index) => (
-        <FeedItem key={index} isMatch={match ? true : false} />
+        <OrderItem key={index} isMatchProfileOrders={match ? true : false} />
       ))}
     </div>
   );

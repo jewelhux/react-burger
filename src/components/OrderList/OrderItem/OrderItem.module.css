@@ -1,5 +1,6 @@
 .itemContainer {
   border-radius: 40px;
+  text-decoration: none;
   cursor: pointer;
   position: relative;
   display: flex;
@@ -9,6 +10,7 @@
   max-width: 90%;
   padding: 24px;
   width: 100%;
+  color: #FFF;
 }
 
 .allImageContainer {
