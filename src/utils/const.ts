@@ -1,6 +1,6 @@
 import {
-  connectFeed as socketFeedConnect,
-  disconnectFeed as socketFeedDisconnect,
+  wsConnectFeed as socketFeedConnect,
+  wsDisconnectFeed as socketFeedDisconnect,
   wsConnectingFeed as socketFeedConnecting,
   wsOpenFeed as socketFeedOpen,
   wsCloseFeed as socketFeedClose,
@@ -8,8 +8,8 @@ import {
   wsMessageFeed as socketFeedessage,
 } from '../services/actions/socketFeedActions';
 import {
-  connectProfile as socketProfileConnect,
-  disconnectProfile as socketProfileDisconnect,
+  wsConnectProfile as socketProfileConnect,
+  wsDisconnectProfile as socketProfileDisconnect,
   wsConnectingProfile as socketProfileConnecting,
   wsOpenProfile as socketProfileOpen,
   wsCloseProfile as socketProfileClose,
@@ -19,6 +19,7 @@ import {
 
 const BURGER_API_URL = 'https://norma.nomoreparties.space/api';
 const DATA_ADRESS = `${BURGER_API_URL}/ingredients`;
+const WS_ORDERS_URL = 'wss://norma.nomoreparties.space/orders/all';
 
 const OREDER_MOCK_DATA = {
   orderId: 1337,
@@ -56,4 +57,5 @@ export {
   BURGER_API_URL,
   WS_FEED_ACTIONS,
   WS_PROFILE_ACTIONS,
+  WS_ORDERS_URL,
 };

@@ -2,6 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import { WebsocketStatus } from '../../../utils/type';
 import { ISocketOrder } from '../../../utils/interfaces';
 import {
+  wsConnectFeed,
   wsCloseFeed,
   wsConnectingFeed,
   wsErrorFeed,
@@ -23,6 +24,9 @@ const initialState: FeedOrdersStore = {
 
 export const socketFeedReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(wsConnectFeed, (state) => {
+      state.status = WebsocketStatus.CONNECTING;
+    })
     .addCase(wsConnectingFeed, (state) => {
       state.status = WebsocketStatus.CONNECTING;
     })

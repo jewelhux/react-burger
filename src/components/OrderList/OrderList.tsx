@@ -11,7 +11,6 @@ interface IProps {
 
 const OrderList = ({ orderList }: IProps) => {
   const match = useMatch('/profile/orders');
-  console.log(orderList);
 
   return (
     <div className={styles.activeContainer}>

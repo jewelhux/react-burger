@@ -22,7 +22,7 @@ import OrderInfoPage from '../../pages/OrderInfoPage/OrderInfoPage';
 import { wsMessageFeed } from '../../services/actions/socketFeedActions';
 
 function App() {
-  const ws = new WebSocket('wss://norma.nomoreparties.space/orders/all');
+  // const ws = new WebSocket('wss://norma.nomoreparties.space/orders/all');
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -30,14 +30,14 @@ function App() {
   const backgroundProfileOrders = location.state && location.state.backgroundProfileOrders;
   const backgroundFeedOrders = location.state && location.state.backgroundFeedOrders;
 
-  ws.onopen = () => {
-    console.log('Соединение установление');
-  };
+  // ws.onopen = () => {
+  //   console.log('Соединение установление');
+  // };
 
-  ws.onmessage = (event: MessageEvent) => {
-    const wsData = JSON.parse(event.data);
-    dispatch(wsMessageFeed(wsData.orders));
-  };
+  // ws.onmessage = (event: MessageEvent) => {
+  //   const wsData = JSON.parse(event.data);
+  //   dispatch(wsMessageFeed(wsData.orders));
+  // };
 
   const handleModalClose = () => {
     navigate(-1);
