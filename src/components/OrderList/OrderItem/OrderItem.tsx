@@ -1,6 +1,6 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../../services/store';
 import styles from './OrderItem.module.css';
 
@@ -10,11 +10,20 @@ interface IProps {
 
 const OrderItem = ({ isMatchProfileOrders }: IProps) => {
   const today = new Date();
+  const location = useLocation();
   const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
   const path = isMatchProfileOrders ? '/profile/orders/123' : '/feed/123';
 
   return (
-    <Link className={styles.itemContainer} to={path}>
+    <Link
+      className={styles.itemContainer}
+      to={path}
+      state={
+        isMatchProfileOrders
+          ? { backgroundProfileOrders: location }
+          : { backgroundFeedOrders: location }
+      }
+    >
       <div className={styles.topSection}>
         <p className={styles.orderNumber}>#034535</p>
         <FormattedDate

@@ -25,7 +25,9 @@ function App() {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const background = location.state && location.state.background;
+  const backgroundIngredients = location.state && location.state.backgroundIngredients;
+  const backgroundProfileOrders = location.state && location.state.backgroundProfileOrders;
+  const backgroundFeedOrders = location.state && location.state.backgroundFeedOrders;
 
   const handleModalClose = () => {
     navigate(-1);
@@ -39,7 +41,11 @@ function App() {
 
   return (
     <>
-      <Routes location={background || location}>
+      <Routes
+        location={
+          backgroundIngredients || backgroundProfileOrders || backgroundFeedOrders || location
+        }
+      >
         <Route path="/" element={<MainLayout />}>
           <Route index element={<MainPage />} />
           <Route path="/login" element={<OnlyUnAuth component={<LoginPage />} />} />
@@ -55,21 +61,47 @@ function App() {
             path="/profile/orders/:ordersId"
             element={<OnlyAuth component={<OrderDetailsPage />} />}
           />
-          <Route path="feed" element={<FeedLayout />}>
+          <Route path="/feed" element={<FeedLayout />}>
             <Route index element={<FeedPage />} />
-            <Route path=":feedId" element={<OrderDetailsPage />} />
+            <Route path="/feed/:feedId" element={<OrderDetailsPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      {background && (
+      {backgroundIngredients && (
         <Routes>
           <Route
             path="/ingredients/:ingredientId"
             element={
               <Modal onClose={handleModalClose} title={'Просмотр ингредиента'}>
                 <IngredientDetails />
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
+
+      {backgroundProfileOrders && (
+        <Routes>
+          <Route
+            path="/profile/orders/:ordersId"
+            element={
+              <Modal onClose={handleModalClose} title={'backgroundProfileOrders'}>
+                <OrderDetailsPage />
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
+
+      {backgroundFeedOrders && (
+        <Routes>
+          <Route
+            path="/feed/:feedId"
+            element={
+              <Modal onClose={handleModalClose} title={'backgroundFeedOrders'}>
+                <OrderDetailsPage />
               </Modal>
             }
           />
