@@ -18,8 +18,8 @@ import IngredientDetails from '../IngredientDetails/IngredientDetails';
 import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
 import FeedPage from '../../pages/FeedPage/FeedPage';
 import { wsConnectingFeed } from '../../services/actions/socketFeedActions';
-import OrderDetailsPage from '../../pages/OrderDetailsPage/OrderDetailsPage';
 import ProfileOrdersPage from '../../pages/OrderPage/ProfileOrdersPage';
+import OrderInfoPage from '../../pages/OrderInfoPage/OrderInfoPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -59,11 +59,11 @@ function App() {
           </Route>
           <Route
             path="/profile/orders/:ordersId"
-            element={<OnlyAuth component={<OrderDetailsPage />} />}
+            element={<OnlyAuth component={<OrderInfoPage />} />}
           />
           <Route path="/feed" element={<FeedLayout />}>
             <Route index element={<FeedPage />} />
-            <Route path="/feed/:feedId" element={<OrderDetailsPage />} />
+            <Route path="/feed/:feedId" element={<OrderInfoPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
@@ -87,9 +87,13 @@ function App() {
           <Route
             path="/profile/orders/:ordersId"
             element={
-              <Modal onClose={handleModalClose} title={'backgroundProfileOrders'}>
-                <OrderDetailsPage />
-              </Modal>
+              <OnlyAuth
+                component={
+                  <Modal onClose={handleModalClose} title={'backgroundProfileOrders'}>
+                    <OrderInfoPage />
+                  </Modal>
+                }
+              />
             }
           />
         </Routes>
@@ -101,7 +105,7 @@ function App() {
             path="/feed/:feedId"
             element={
               <Modal onClose={handleModalClose} title={'backgroundFeedOrders'}>
-                <OrderDetailsPage />
+                <OrderInfoPage />
               </Modal>
             }
           />
