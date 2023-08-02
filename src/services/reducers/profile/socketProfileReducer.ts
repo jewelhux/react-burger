@@ -49,5 +49,6 @@ export const socketProfileReducer = createReducer(initialState, (builder) => {
       state.orderList = orders;
       state.total = total;
       state.totalToday = totalToday;
+      state.orderList.reverse();
     });
 });
