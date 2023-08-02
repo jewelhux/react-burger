@@ -20,6 +20,7 @@ import {
 const BURGER_API_URL = 'https://norma.nomoreparties.space/api';
 const DATA_ADRESS = `${BURGER_API_URL}/ingredients`;
 const WS_ORDERS_URL = 'wss://norma.nomoreparties.space/orders/all';
+const WS_USER_ORDERS_URL = 'wss://norma.nomoreparties.space/orders';
 
 const OREDER_MOCK_DATA = {
   orderId: 1337,
@@ -50,6 +51,11 @@ const WS_PROFILE_ACTIONS = {
   onMessage: socketProfileessage,
 };
 
+const PROFILE_LINK = {
+  userData: '/profile',
+  userOrder: '/profile/orders',
+};
+
 export {
   DATA_ADRESS,
   OREDER_MOCK_DATA,
@@ -58,4 +64,6 @@ export {
   WS_FEED_ACTIONS,
   WS_PROFILE_ACTIONS,
   WS_ORDERS_URL,
+  WS_USER_ORDERS_URL,
+  PROFILE_LINK,
 };

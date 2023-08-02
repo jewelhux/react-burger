@@ -10,18 +10,28 @@
 }
 
 .actualOrder {
-  max-width: 500px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 36px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .orderFinishItem, .orderProcessItem {
   composes: text text_type_digits-default from global;
 }
 
+.orderFinish, .orderProcess {
+  flex: 1;
+}
+
+.orderFinish {
+  max-width: 285px;
+  overflow: hidden;
+}
+
 .orderFinishList, .orderProcessList {
+  max-height: 320px;
+  width: 100%;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   gap: 8px;
 }

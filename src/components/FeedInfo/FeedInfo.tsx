@@ -1,22 +1,27 @@
 import React from 'react';
+import { ISocketOrder } from '../../utils/interfaces';
+import { orderListInfo } from '../../utils/utils';
 import styles from './FeedInfo.module.css';
-
-const ORDER_FINISH = ['034533', '034534', '034535', '034536', '034533'];
-const ORDER_PROCESS = ['044533', '044534', '044535', '044536'];
 
 interface IProps {
   totalOrder: number;
   totalTodayOrder: number;
+  orderList: ISocketOrder[];
 }
 
-const FeedInfo = ({ totalOrder, totalTodayOrder }: IProps) => {
+const FeedInfo = ({ totalOrder, totalTodayOrder, orderList }: IProps) => {
+  const orderStatusList = orderListInfo(orderList);
+
+  const orderProcessList = orderStatusList.process;
+  const orderFinishList = orderStatusList.done;
+
   return (
     <div className={styles.contentMain}>
       <div className={styles.actualOrder}>
         <div className={styles.orderFinish}>
           <h4 className={styles.orderNameSection}>Готовы:</h4>
           <div className={styles.orderFinishList}>
-            {ORDER_FINISH.slice(0, 9).map((item, index) => (
+            {orderFinishList.map((item, index) => (
               <p className={styles.orderFinishItem} key={index}>
                 {item}
               </p>
@@ -26,7 +31,7 @@ const FeedInfo = ({ totalOrder, totalTodayOrder }: IProps) => {
         <div className={styles.orderProcess}>
           <h4 className={styles.orderNameSection}>В работе:</h4>
           <div className={styles.orderProcessList}>
-            {ORDER_PROCESS.slice(0, 9).map((item, index) => (
+            {orderProcessList.map((item, index) => (
               <p className={styles.orderProcessItem} key={index}>
                 {item}
               </p>

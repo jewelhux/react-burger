@@ -6,7 +6,7 @@ export const wsDisconnectProfile = createAction('PROFILE_DISCONNECT');
 export const wsConnectingProfile = createAction('PROFILE_WS_CONNECTING');
 export const wsOpenProfile = createAction('PROFILE_WS_OPEN');
 export const wsCloseProfile = createAction('PROFILE_WS_CLOSE');
-export const wsMessageProfile = createAction<ISocketAnswer[], 'PROFILE_WS_MESSAGE'>(
+export const wsMessageProfile = createAction<ISocketAnswer, 'PROFILE_WS_MESSAGE'>(
   'PROFILE_WS_MESSAGE'
 );
 export const wsErrorProfile = createAction<string, 'PROFILE_WS_ERROR'>('PROFILE_WS_ERROR');

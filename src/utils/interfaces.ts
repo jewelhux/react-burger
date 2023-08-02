@@ -100,6 +100,11 @@ interface ISocketAnswer {
   totalToday: number;
 }
 
+interface IOrderProcess {
+  done: number[];
+  process: number[];
+}
+
 export type {
   IData,
   IOrderData,
@@ -118,4 +123,5 @@ export type {
   IEditUser,
   ISocketOrder,
   ISocketAnswer,
+  IOrderProcess,
 };

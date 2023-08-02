@@ -1,6 +1,5 @@
 import React from 'react';
 import { useMatch } from 'react-router-dom';
-import { useAppSelector } from '../../services/store';
 import { ISocketOrder } from '../../utils/interfaces';
 import OrderItem from './OrderItem/OrderItem';
 import styles from './OrderList.module.css';

@@ -16,6 +16,7 @@
   font-size: 36px;
   text-decoration: none;
   composes: text text_color_inactive from global;
+  
 }
 
 .active {

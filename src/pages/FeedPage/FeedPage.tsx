@@ -25,7 +25,11 @@ const FeedPage = () => {
       <h2 className={styles.mainText}>Лента заказов</h2>
       <div className={styles.container}>
         <OrderList orderList={allFeedOrders} />
-        <FeedInfo totalOrder={totalOrder} totalTodayOrder={totalTodayOrder} />
+        <FeedInfo
+          totalOrder={totalOrder}
+          totalTodayOrder={totalTodayOrder}
+          orderList={allFeedOrders}
+        />
       </div>
     </main>
   );
