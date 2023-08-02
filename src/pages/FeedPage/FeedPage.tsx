@@ -9,6 +9,8 @@ import styles from './FeedPage.module.css';
 
 const FeedPage = () => {
   const allFeedOrders = useAppSelector((state) => state.feedOrders.orderList);
+  const totalOrder = useAppSelector((state) => state.feedOrders.total);
+  const totalTodayOrder = useAppSelector((state) => state.feedOrders.totalToday);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -18,14 +20,12 @@ const FeedPage = () => {
     };
   }, [dispatch]);
 
-  console.log(allFeedOrders);
-
   return (
     <main className={styles.mainContainer}>
       <h2 className={styles.mainText}>Лента заказов</h2>
       <div className={styles.container}>
         <OrderList orderList={allFeedOrders} />
-        <FeedInfo />
+        <FeedInfo totalOrder={totalOrder} totalTodayOrder={totalTodayOrder} />
       </div>
     </main>
   );

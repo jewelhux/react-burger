@@ -87,9 +87,17 @@ interface ISocketOrder {
   ingredients: string[];
   _id: string;
   status: string;
+  name: string;
   number: number;
   createdAt: string;
   updatedAt: string;
+}
+
+interface ISocketAnswer {
+  success: boolean;
+  orders: ISocketOrder[];
+  total: number;
+  totalToday: number;
 }
 
 export type {
@@ -109,4 +117,5 @@ export type {
   IResetPassData,
   IEditUser,
   ISocketOrder,
+  ISocketAnswer,
 };

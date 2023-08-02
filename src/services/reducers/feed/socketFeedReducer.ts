@@ -14,12 +14,16 @@ export type FeedOrdersStore = {
   status: WebsocketStatus;
   connectionError: string;
   orderList: ISocketOrder[];
+  total: number;
+  totalToday: number;
 };
 
 const initialState: FeedOrdersStore = {
   status: WebsocketStatus.OFFLINE,
   connectionError: '',
   orderList: [],
+  total: 0,
+  totalToday: 0,
 };
 
 export const socketFeedReducer = createReducer(initialState, (builder) => {
@@ -41,6 +45,9 @@ export const socketFeedReducer = createReducer(initialState, (builder) => {
       state.connectionError = action.payload;
     })
     .addCase(wsMessageFeed, (state, action) => {
-      state.orderList = action.payload;
+      const { orders, total, totalToday } = action.payload;
+      state.orderList = orders;
+      state.total = total;
+      state.totalToday = totalToday;
     });
 });

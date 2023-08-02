@@ -2,7 +2,8 @@ import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burge
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAppSelector } from '../../../services/store';
-import { ISocketOrder } from '../../../utils/interfaces';
+import { IData, ISocketOrder } from '../../../utils/interfaces';
+import { totalOrderPrice } from '../../../utils/utils';
 import styles from './OrderItem.module.css';
 
 interface IProps {
@@ -11,10 +12,20 @@ interface IProps {
 }
 
 const OrderItem = ({ isMatchProfileOrders, orderItem }: IProps) => {
-  const today = new Date();
   const location = useLocation();
-  const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
+  const allIngredientsBurger = useAppSelector((state) => state.allIngredients.ingredients);
   const path = isMatchProfileOrders ? '/profile/orders/123' : '/feed/123';
+
+  const currentListIngidients = orderItem?.ingredients.reduce<IData[]>(
+    (previousValue, currentValue) => {
+      const priceObject = allIngredientsBurger?.find((item) => item._id === currentValue);
+      if (!!priceObject) {
+        previousValue.push(priceObject);
+      }
+      return previousValue;
+    },
+    []
+  );
 
   return (
     <Link
@@ -28,34 +39,28 @@ const OrderItem = ({ isMatchProfileOrders, orderItem }: IProps) => {
     >
       <div className={styles.topSection}>
         <p className={styles.orderNumber}>#{orderItem.number}</p>
-        <FormattedDate
-          className={styles.time}
-          date={
-            new Date(
-              today.getFullYear(),
-              today.getMonth(),
-              today.getDate(),
-              today.getHours(),
-              today.getMinutes() - 1,
-              0
-            )
-          }
-        />
+        <FormattedDate className={styles.time} date={new Date(`${orderItem?.createdAt}`)} />
       </div>
-      <h3>Death Star Starship Main бургер</h3>
+      <h3>{orderItem.name}</h3>
       {isMatchProfileOrders ? <p>Статус заказа</p> : <></>}
       <div className={styles.bottomSection}>
         <div className={styles.allImageContainer}>
-          {allIngredientsCurrentBurger.slice(0, 6).map((item, index) => (
-            <div className={styles.imageContainer} key={index}>
-              <img className={styles.image} src={item.image_mobile} key={index} />
-              {index === 5 ? <span className={styles.lastImagetext}>+5</span> : <></>}
-            </div>
-          ))}
+          {currentListIngidients.slice(0, 6).map((item, index) => {
+            return (
+              <div className={styles.imageContainer} key={index}>
+                <img className={styles.image} src={item.image_mobile} key={index} />
+                {index === 5 ? (
+                  <span className={styles.lastImagetext}>+{currentListIngidients.length - 5}</span>
+                ) : (
+                  <></>
+                )}
+              </div>
+            );
+          })}
         </div>
         <div className={styles.priceContainer}>
           <CurrencyIcon type="primary" />
-          <p className={styles.price}>12</p>
+          <p className={styles.price}>{totalOrderPrice(currentListIngidients)}</p>
         </div>
       </div>
     </Link>
