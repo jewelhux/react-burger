@@ -1,10 +1,10 @@
 import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import React from 'react';
-import { IData } from '../../../utils/interfaces';
+import { ITotalData } from '../../../utils/interfaces';
 import styles from './OrderInfoItem.module.css';
 
 interface IDataItemProps {
-  dataItem: IData;
+  dataItem: ITotalData;
 }
 
 const OrderInfoItem = ({ dataItem }: IDataItemProps) => {
@@ -14,10 +14,10 @@ const OrderInfoItem = ({ dataItem }: IDataItemProps) => {
         <img className={styles.image} src={dataItem.image_mobile} />
       </div>
       <p className={styles.ingredientName}>{dataItem.name}</p>
-      <p className={styles.ingredientName}>x1</p>
+      <p className={styles.ingredientName}>x{dataItem.totalCount}</p>
       <div className={styles.priceContainer}>
         <CurrencyIcon type="primary" />
-        <p className={styles.price}>{dataItem.price}</p>
+        <p className={styles.price}>{dataItem.totalPrice}</p>
       </div>
     </div>
   );

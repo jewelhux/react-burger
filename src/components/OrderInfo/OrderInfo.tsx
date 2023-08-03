@@ -1,10 +1,10 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { getOrder } from '../../services/actions';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { IData } from '../../utils/interfaces';
-import { totalOrderPrice } from '../../utils/utils';
+import { groupingIngredients, totalOrderPrice } from '../../utils/utils';
 import styles from './OrderInfo.module.css';
 import OrderInfoItem from './OrderInfoItem/OrderInfoItem';
 
@@ -34,14 +34,21 @@ const OrderInfo = () => {
     }
   }, [currentOrder, dispatch, orderId]);
 
-  const currentListIngidients =
-    currentOrder?.ingredients.reduce<IData[]>((previousValue, currentValue) => {
-      const priceObject = allIngredientsBurger?.find((item) => item._id === currentValue);
-      if (!!priceObject) {
-        previousValue.push(priceObject);
-      }
-      return previousValue;
-    }, []) ?? [];
+  const currentListIngidients = useMemo(
+    () =>
+      currentOrder?.ingredients.reduce<IData[]>((previousValue, currentValue) => {
+        const findElement = allIngredientsBurger?.find((item) => item._id === currentValue);
+        if (!!findElement) {
+          previousValue.push(findElement);
+        }
+        return previousValue;
+      }, []) ?? [],
+    [allIngredientsBurger, currentOrder?.ingredients]
+  );
+
+  const updateCurrentIngredientList = useMemo(() => {
+    return groupingIngredients(currentListIngidients);
+  }, [currentListIngidients]);
 
   return (
     <div className={styles.mainContainer}>
@@ -55,7 +62,7 @@ const OrderInfo = () => {
       <div className={styles.ingredients}>
         <h2>Состав:</h2>
         <div className={styles.activeContainer}>
-          {currentListIngidients.map((item, index) => (
+          {updateCurrentIngredientList.map((item, index) => (
             <OrderInfoItem key={index} dataItem={item} />
           ))}
         </div>

@@ -17,6 +17,11 @@ interface IExtData extends IData {
   key: string;
 }
 
+interface ITotalData extends IData {
+  totalPrice: number;
+  totalCount: number;
+}
+
 interface IOrderData {
   orderId: number;
 }
@@ -124,4 +129,5 @@ export type {
   ISocketOrder,
   ISocketAnswer,
   IOrderProcess,
+  ITotalData,
 };
