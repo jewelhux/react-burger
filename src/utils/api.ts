@@ -138,6 +138,16 @@ const resetPass = async (resetPassData: IResetPassData) => {
   }).then(checkResponse);
 };
 
+const getOrder = async (orderNumber: string) => {
+  return fetch(`${BURGER_API_URL}/orders/${orderNumber}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: localStorage.getItem('accessToken'),
+    } as HeadersInit,
+  }).then(checkResponse);
+};
+
 export const api = {
   login,
   register,
@@ -148,4 +158,5 @@ export const api = {
   forgotPass,
   resetPass,
   setOrder,
+  getOrder,
 };

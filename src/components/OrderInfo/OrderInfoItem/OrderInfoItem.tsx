@@ -16,7 +16,7 @@ const OrderInfoItem = ({ dataItem }: IDataItemProps) => {
       <p className={styles.ingredientName}>{dataItem.name}</p>
       <div className={styles.priceContainer}>
         <CurrencyIcon type="primary" />
-        <p className={styles.price}>1332</p>
+        <p className={styles.price}>{dataItem.price}</p>
       </div>
     </div>
   );

@@ -13,11 +13,13 @@
 
 .mainInfo {
   display: flex;
+  gap: 20px;
   flex-direction: column;
 }
 
-.status {
+.orderStatus {
   align-self: flex-start;
+  font-size: 24px;
   color: #00CCCC;
 }
 

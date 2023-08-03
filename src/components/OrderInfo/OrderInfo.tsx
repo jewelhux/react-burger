@@ -1,45 +1,74 @@
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components';
-import React from 'react';
-import { useAppSelector } from '../../services/store';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getOrder } from '../../services/actions';
+import { useAppDispatch, useAppSelector } from '../../services/store';
+import { IData } from '../../utils/interfaces';
+import { totalOrderPrice } from '../../utils/utils';
 import styles from './OrderInfo.module.css';
 import OrderInfoItem from './OrderInfoItem/OrderInfoItem';
 
 const OrderInfo = () => {
-  const today = new Date();
-  const allIngredientsCurrentBurger = useAppSelector((state) => state.allIngredients.ingredients);
+  const dispatch = useAppDispatch();
+  const params = useParams();
+  const orderId = params.orderId ?? '';
+
+  const allIngredientsBurger = useAppSelector((state) => state.allIngredients.ingredients);
+  const currentOrder = useAppSelector((state) => {
+    let order = state.feedOrders.orderList.find((el) => el.number === Number(orderId));
+    if (order) {
+      return order;
+    }
+
+    order = state.profileOrders.orderList.find((el) => el.number === Number(orderId));
+    if (order) {
+      return order;
+    }
+
+    return state.currentOrder.orderModal;
+  });
+
+  useEffect(() => {
+    if (!currentOrder) {
+      dispatch(getOrder(orderId));
+    }
+  }, [currentOrder, dispatch, orderId]);
+
+  const currentListIngidients =
+    currentOrder?.ingredients.reduce<IData[]>((previousValue, currentValue) => {
+      const priceObject = allIngredientsBurger?.find((item) => item._id === currentValue);
+      if (!!priceObject) {
+        previousValue.push(priceObject);
+      }
+      return previousValue;
+    }, []) ?? [];
+
+  console.log(currentListIngidients);
 
   return (
     <div className={styles.mainContainer}>
-      <h2 className={styles.numberOrder}>#034533</h2>
+      <h2 className={styles.numberOrder}>#{currentOrder?.number ?? 'Данные загружаются'}</h2>
       <div className={styles.mainInfo}>
-        <h2>Black Hole Singularity острый бургер</h2>
-        <p className={styles.status}>Выполнен</p>
+        <h2>{currentOrder?.name ?? 'Данные загружаются'}</h2>
+        <p className={styles.orderStatus}>
+          {currentOrder?.status.toUpperCase() ?? 'Данные загружаются'}
+        </p>
       </div>
       <div className={styles.ingredients}>
         <h2>Состав:</h2>
         <div className={styles.activeContainer}>
-          {allIngredientsCurrentBurger.map((item, index) => (
+          {currentListIngidients.map((item, index) => (
             <OrderInfoItem key={index} dataItem={item} />
           ))}
         </div>
       </div>
       <div className={styles.dateAndPrice}>
-        <FormattedDate
-          className={styles.time}
-          date={
-            new Date(
-              today.getFullYear(),
-              today.getMonth(),
-              today.getDate(),
-              today.getHours(),
-              today.getMinutes() - 1,
-              0
-            )
-          }
-        />
+        <FormattedDate className={styles.time} date={new Date(`${currentOrder?.createdAt}`)} />
         <div className={styles.priceContainer}>
           <CurrencyIcon type="primary" />
-          <p className={styles.price}>1332</p>
+          <p className={styles.price}>
+            {totalOrderPrice(currentListIngidients) ?? 'Данные загружаются'}
+          </p>
         </div>
       </div>
     </div>

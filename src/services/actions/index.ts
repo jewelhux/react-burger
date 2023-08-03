@@ -1,7 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../../utils/api';
 import { DATA_ADRESS } from '../../utils/const';
-import { ILoginUser, IOrder, IRegisterUser, IUser, IEditUser } from '../../utils/interfaces';
+import {
+  ILoginUser,
+  IOrder,
+  IRegisterUser,
+  IUser,
+  IEditUser,
+  ISocketOrder,
+} from '../../utils/interfaces';
 import { checkResponse } from '../../utils/utils';
 
 export const fetchIngredients = createAsyncThunk('ingredients/fetchIngredients', async () => {
@@ -65,3 +72,16 @@ export const checkUserAuth = createAsyncThunk('auth/checkUserAuth', async (unkno
     await thunkAPI.dispatch(getUser());
   }
 });
+
+export const getOrder = createAsyncThunk<ISocketOrder, string>(
+  'feed/order',
+  async (number, thunkAPI) => {
+    const res = await api.getOrder(number);
+
+    if (!res.success) {
+      return thunkAPI.rejectWithValue('');
+    }
+
+    return res.orders[0];
+  }
+);

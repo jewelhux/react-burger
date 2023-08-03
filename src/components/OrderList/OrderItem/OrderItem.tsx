@@ -14,7 +14,9 @@ interface IProps {
 const OrderItem = ({ isMatchProfileOrders, orderItem }: IProps) => {
   const location = useLocation();
   const allIngredientsBurger = useAppSelector((state) => state.allIngredients.ingredients);
-  const path = isMatchProfileOrders ? '/profile/orders/123' : '/feed/123';
+  const path = isMatchProfileOrders
+    ? `/profile/orders/${orderItem.number}`
+    : `/feed/${orderItem.number}`;
 
   const currentListIngidients = orderItem?.ingredients.reduce<IData[]>(
     (previousValue, currentValue) => {
@@ -42,7 +44,13 @@ const OrderItem = ({ isMatchProfileOrders, orderItem }: IProps) => {
         <FormattedDate className={styles.time} date={new Date(`${orderItem?.createdAt}`)} />
       </div>
       <h3>{orderItem.name}</h3>
-      {isMatchProfileOrders ? <p>Статус заказа</p> : <></>}
+      {isMatchProfileOrders ? (
+        <p>
+          Статус заказа: <span className={styles.done}>{orderItem.status.toUpperCase()}</span>
+        </p>
+      ) : (
+        <></>
+      )}
       <div className={styles.bottomSection}>
         <div className={styles.allImageContainer}>
           {currentListIngidients.slice(0, 6).map((item, index) => {

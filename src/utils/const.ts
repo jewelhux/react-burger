@@ -16,6 +16,7 @@ import {
   wsErrorProfile as socketProfileError,
   wsMessageProfile as socketProfileessage,
 } from '../services/actions/socketProfileActions';
+import { ISocketOrder } from './interfaces';
 
 const BURGER_API_URL = 'https://norma.nomoreparties.space/api';
 const DATA_ADRESS = `${BURGER_API_URL}/ingredients`;
@@ -63,6 +64,16 @@ const HEADER_LINK = {
   profile: '/profile',
 };
 
+const DEFAULT_DATA: ISocketOrder = {
+  ingredients: [],
+  _id: '0',
+  status: '0',
+  name: '0',
+  number: 0,
+  createdAt: '0',
+  updatedAt: '0',
+};
+
 export {
   DATA_ADRESS,
   OREDER_MOCK_DATA,
@@ -74,4 +85,5 @@ export {
   WS_USER_ORDERS_URL,
   PROFILE_LINK,
   HEADER_LINK,
+  DEFAULT_DATA,
 };

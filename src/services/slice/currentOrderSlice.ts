@@ -1,16 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { placeOrder } from '../actions';
-import { IOrder } from '../../utils/interfaces';
+import { getOrder, placeOrder } from '../actions';
+import { IOrder, ISocketOrder } from '../../utils/interfaces';
 
 interface ISlice {
   order: IOrder | null;
+  orderModal: ISocketOrder | null;
   loading: boolean;
   error: null | boolean;
 }
 
 const initialState: ISlice = {
   order: null,
+  orderModal: null,
   loading: false,
   error: null,
 };
@@ -33,6 +35,9 @@ export const currentOrderSlice = createSlice({
     });
     builder.addCase(placeOrder.rejected, (state) => {
       state.error = true;
+    });
+    builder.addCase(getOrder.fulfilled, (state, action) => {
+      state.orderModal = action.payload;
     });
   },
 });

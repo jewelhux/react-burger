@@ -19,25 +19,14 @@ import FeedLayout from '../../Layout/FeedLayout/FeedLayout';
 import FeedPage from '../../pages/FeedPage/FeedPage';
 import ProfileOrdersPage from '../../pages/ProfileOrdersPage/ProfileOrdersPage';
 import OrderInfoPage from '../../pages/OrderInfoPage/OrderInfoPage';
-import { wsMessageFeed } from '../../services/actions/socketFeedActions';
 
 function App() {
-  // const ws = new WebSocket('wss://norma.nomoreparties.space/orders/all');
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
   const backgroundIngredients = location.state && location.state.backgroundIngredients;
   const backgroundProfileOrders = location.state && location.state.backgroundProfileOrders;
   const backgroundFeedOrders = location.state && location.state.backgroundFeedOrders;
-
-  // ws.onopen = () => {
-  //   console.log('Соединение установление');
-  // };
-
-  // ws.onmessage = (event: MessageEvent) => {
-  //   const wsData = JSON.parse(event.data);
-  //   dispatch(wsMessageFeed(wsData.orders));
-  // };
 
   const handleModalClose = () => {
     navigate(-1);
@@ -67,12 +56,12 @@ function App() {
             <Route path="orders" element={<OnlyAuth component={<ProfileOrdersPage />} />} />
           </Route>
           <Route
-            path="/profile/orders/:ordersId"
+            path="/profile/orders/:orderId"
             element={<OnlyAuth component={<OrderInfoPage />} />}
           />
           <Route path="/feed" element={<FeedLayout />}>
             <Route index element={<FeedPage />} />
-            <Route path="/feed/:feedId" element={<OrderInfoPage />} />
+            <Route path="/feed/:orderId" element={<OrderInfoPage />} />
           </Route>
         </Route>
         <Route path="*" element={<NotFoundPage />} />
@@ -94,11 +83,11 @@ function App() {
       {backgroundProfileOrders && (
         <Routes>
           <Route
-            path="/profile/orders/:ordersId"
+            path="/profile/orders/:orderId"
             element={
               <OnlyAuth
                 component={
-                  <Modal onClose={handleModalClose} title={'backgroundProfileOrders'}>
+                  <Modal onClose={handleModalClose} title={''}>
                     <OrderInfoPage />
                   </Modal>
                 }
@@ -111,9 +100,9 @@ function App() {
       {backgroundFeedOrders && (
         <Routes>
           <Route
-            path="/feed/:feedId"
+            path="/feed/:orderId"
             element={
-              <Modal onClose={handleModalClose} title={'backgroundFeedOrders'}>
+              <Modal onClose={handleModalClose} title={''}>
                 <OrderInfoPage />
               </Modal>
             }
