@@ -1,7 +1,7 @@
 .content {
   box-sizing: border-box;
   position: absolute;
-  max-width: 640px;
+  max-width: 750px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
