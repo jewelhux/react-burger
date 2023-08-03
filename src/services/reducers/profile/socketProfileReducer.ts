@@ -46,9 +46,11 @@ export const socketProfileReducer = createReducer(initialState, (builder) => {
     })
     .addCase(wsMessageProfile, (state, action) => {
       const { orders, total, totalToday } = action.payload;
-      state.orderList = orders;
-      state.total = total;
-      state.totalToday = totalToday;
-      state.orderList.reverse();
+      if (action.payload.orders.length) {
+        state.orderList = orders;
+        state.total = total;
+        state.totalToday = totalToday;
+        state.orderList.reverse();
+      }
     });
 });

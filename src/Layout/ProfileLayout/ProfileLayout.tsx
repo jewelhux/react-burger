@@ -35,7 +35,7 @@ function ProfileLayout() {
           >
             История заказов
           </NavLink>
-          <NavLink className={styles.link} to="/" onClick={handleLogout}>
+          <NavLink className={styles.link} to={PROFILE_LINK.base} onClick={handleLogout}>
             Выход
           </NavLink>
         </nav>

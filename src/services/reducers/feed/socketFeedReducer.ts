@@ -46,8 +46,10 @@ export const socketFeedReducer = createReducer(initialState, (builder) => {
     })
     .addCase(wsMessageFeed, (state, action) => {
       const { orders, total, totalToday } = action.payload;
-      state.orderList = orders;
-      state.total = total;
-      state.totalToday = totalToday;
+      if (action.payload.orders.length) {
+        state.orderList = orders;
+        state.total = total;
+        state.totalToday = totalToday;
+      }
     });
 });

@@ -52,8 +52,15 @@ const WS_PROFILE_ACTIONS = {
 };
 
 const PROFILE_LINK = {
+  base: '/',
   userData: '/profile',
   userOrder: '/profile/orders',
+};
+
+const HEADER_LINK = {
+  base: '/',
+  feed: '/feed',
+  profile: '/profile',
 };
 
 export {
@@ -66,4 +73,5 @@ export {
   WS_ORDERS_URL,
   WS_USER_ORDERS_URL,
   PROFILE_LINK,
+  HEADER_LINK,
 };
