@@ -46,13 +46,14 @@
 
 .activeContainer {
   display: flex;
+  box-sizing: border-box;
   flex-direction: column;
-  gap: 20px;
+  gap: 35px;
   align-items: center;
   overflow-y: scroll;
-  max-height: 400px;
-  padding-right: 10px;
   composes: custom-scroll from global;
+  max-height: 400px;
+  padding: 10px 20px 10px 10px;
 }
 
 .time {

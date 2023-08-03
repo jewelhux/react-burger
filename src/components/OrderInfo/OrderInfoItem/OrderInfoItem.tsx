@@ -14,6 +14,7 @@ const OrderInfoItem = ({ dataItem }: IDataItemProps) => {
         <img className={styles.image} src={dataItem.image_mobile} />
       </div>
       <p className={styles.ingredientName}>{dataItem.name}</p>
+      <p className={styles.ingredientName}>x1</p>
       <div className={styles.priceContainer}>
         <CurrencyIcon type="primary" />
         <p className={styles.price}>{dataItem.price}</p>
