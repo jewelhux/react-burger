@@ -43,8 +43,6 @@ const OrderInfo = () => {
       return previousValue;
     }, []) ?? [];
 
-  console.log(currentListIngidients);
-
   return (
     <div className={styles.mainContainer}>
       <h2 className={styles.numberOrder}>#{currentOrder?.number ?? 'Данные загружаются'}</h2>

@@ -37,17 +37,6 @@ export const fetchWithRefresh = async (url: string, options: RequestInit) => {
   }
 };
 
-const setOrder = async (ingredients: string[]) => {
-  return fetchWithRefresh(`${BURGER_API_URL}/orders`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      authorization: localStorage.getItem('accessToken'),
-    } as HeadersInit,
-    body: JSON.stringify({ ingredients }),
-  });
-};
-
 const register = async (userData: IRegisterUser) => {
   try {
     const response = await fetch(`${BURGER_API_URL}/auth/register`, {
@@ -136,6 +125,17 @@ const resetPass = async (resetPassData: IResetPassData) => {
     },
     body: JSON.stringify({ ...resetPassData }),
   }).then(checkResponse);
+};
+
+const setOrder = async (ingredients: string[]) => {
+  return fetchWithRefresh(`${BURGER_API_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: localStorage.getItem('accessToken'),
+    } as HeadersInit,
+    body: JSON.stringify({ ingredients }),
+  });
 };
 
 const getOrder = async (orderNumber: string) => {

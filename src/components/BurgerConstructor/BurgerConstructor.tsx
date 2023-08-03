@@ -37,7 +37,7 @@ const BurgerConstructor = () => {
     const bunId = burgersData.bun?._id;
     const ingredientsId = burgersData.ingredients.map((item) => item._id);
 
-    if (bunId) ingredientsId.push(bunId);
+    if (bunId) ingredientsId.push(bunId, bunId);
     if (!user) {
       navigate('/login');
     } else {
