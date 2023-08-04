@@ -1,0 +1,61 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 60px;
+  max-width: 700px;
+  align-self: center;
+}
+
+.numberOrder {
+  align-self: center;
+}
+
+.mainInfo {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.orderStatus {
+  align-self: flex-start;
+  font-size: 24px;
+  color: #00CCCC;
+}
+
+.dateAndPrice {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.priceContainer {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.price {
+  font-size: 24px;
+}
+
+.ingredients {
+  align-self: center;
+}
+
+.activeContainer {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 35px;
+  align-items: center;
+  overflow-y: scroll;
+  composes: custom-scroll from global;
+  max-height: 400px;
+  padding: 10px 20px 10px 10px;
+}
+
+.time {
+  color: #8585AD;
+}

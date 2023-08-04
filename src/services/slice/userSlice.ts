@@ -1,12 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {
-  checkUserAuth,
-  editUser,
-  getUser,
-  loginUser,
-  logoutUser,
-  registerUser,
-} from '../actions/actions';
+import { checkUserAuth, editUser, getUser, loginUser, logoutUser, registerUser } from '../actions';
 import { IUser } from '../../utils/interfaces';
 
 interface ISlice {

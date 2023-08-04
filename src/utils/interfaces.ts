@@ -17,6 +17,11 @@ interface IExtData extends IData {
   key: string;
 }
 
+interface ITotalData extends IData {
+  totalPrice: number;
+  totalCount: number;
+}
+
 interface IOrderData {
   orderId: number;
 }
@@ -83,6 +88,28 @@ interface IResetPassData {
   token: string;
 }
 
+interface ISocketOrder {
+  ingredients: string[];
+  _id: string;
+  status: string;
+  name: string;
+  number: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+interface ISocketAnswer {
+  success: boolean;
+  orders: ISocketOrder[];
+  total: number;
+  totalToday: number;
+}
+
+interface IOrderProcess {
+  done: number[];
+  process: number[];
+}
+
 export type {
   IData,
   IOrderData,
@@ -99,4 +126,8 @@ export type {
   ILoginUser,
   IResetPassData,
   IEditUser,
+  ISocketOrder,
+  ISocketAnswer,
+  IOrderProcess,
+  ITotalData,
 };

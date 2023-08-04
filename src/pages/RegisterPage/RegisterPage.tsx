@@ -7,7 +7,7 @@ import {
 } from '@ya.praktikum/react-developer-burger-ui-components';
 import { Link } from 'react-router-dom';
 import styles from './RegisterPage.module.css';
-import { registerUser } from '../../services/actions/actions';
+import { registerUser } from '../../services/actions';
 import { useAppDispatch } from '../../services/store';
 
 const RegisterPage = () => {

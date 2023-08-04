@@ -6,7 +6,7 @@ import Modal from '../Modal/Modal';
 import OrderDetails from '../OrderDetails/OrderDetails';
 import { useAppDispatch, useAppSelector } from '../../services/store';
 import { IExtData, IUser } from '../../utils/interfaces';
-import { placeOrder } from '../../services/actions/actions';
+import { placeOrder } from '../../services/actions';
 import { useNavigate } from 'react-router-dom';
 
 const BurgerConstructor = () => {
@@ -37,7 +37,7 @@ const BurgerConstructor = () => {
     const bunId = burgersData.bun?._id;
     const ingredientsId = burgersData.ingredients.map((item) => item._id);
 
-    if (bunId) ingredientsId.push(bunId);
+    if (bunId) ingredientsId.push(bunId, bunId);
     if (!user) {
       navigate('/login');
     } else {

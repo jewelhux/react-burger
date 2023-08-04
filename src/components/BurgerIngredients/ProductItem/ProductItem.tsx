@@ -69,7 +69,7 @@ const ProductItem = ({ dataItem }: IDataItemProps) => {
     <Link
       key={dataItem._id}
       to={`/ingredients/${dataItem._id}`}
-      state={{ background: location }}
+      state={{ backgroundIngredients: location }}
       className={styles.link}
     >
       <li className={styles.itemContainer} onClick={handleOpenPopup} ref={drag}>

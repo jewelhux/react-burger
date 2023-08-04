@@ -69,3 +69,7 @@
     order: -1;
   }
 }
+
+.active {
+  color: #F2F2F3;
+}

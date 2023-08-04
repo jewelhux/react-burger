@@ -1,0 +1,123 @@
+.itemContainer {
+  border-radius: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background-color: #1C1C21;
+  max-width: 90%;
+  padding: 24px;
+  width: 100%;
+  color: #FFF;
+}
+
+.allImageContainer {
+  display: flex;
+  position: relative;
+}
+
+.imageContainer {
+  width: 70px;
+  height: 70px;
+}
+
+.time {
+  color: #8585AD;
+  margin-left: auto;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  object-fit: cover;
+  border: 3px solid #4C4CFF;
+  background-color: #131316;
+  border-radius: 50%;
+}
+
+.imageContainer:not(:first-child) {
+  position: absolute;
+}
+
+.imageContainer:nth-child(1) {
+  position: relative;
+  z-index: 10;
+}
+
+.imageContainer:nth-child(2) {
+  z-index: 9;
+  left: 50px;
+}
+
+.imageContainer:nth-child(3) {
+  z-index: 8;
+  left: 100px;
+}
+
+.imageContainer:nth-child(4) {
+  z-index: 7;
+  left: 150px;
+}
+
+.imageContainer:nth-child(5) {
+  z-index: 6;
+  left: 200px;
+}
+
+.imageContainer:nth-child(6) {
+  z-index: 5;
+  left: 250px;
+}
+
+.imageContainer:nth-child(6)::after {
+  content: '';
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 3px solid #4C4CFF;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.lastImagetext {
+  position: absolute;
+  font-size: 20px;
+  z-index: 1;
+  top: 38%;
+  left: 38%;
+}
+
+.topSection {
+  display: flex;
+}
+
+.orderNumber {
+  font-size: 20px;
+}
+
+.bottomSection {
+  display: flex;
+}
+
+.priceContainer {
+  display: flex;
+  margin-left: auto;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.price {
+  composes: text text_type_digits-medium from global;
+  font-size: 28px;
+}
+
+.done {
+  color: green;
+}
