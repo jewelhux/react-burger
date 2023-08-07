@@ -1,25 +1,25 @@
 describe('Приложение корректно загрузилось', function () {
   beforeEach(() => {
-    cy.intercept('GET', 'https://norma.nomoreparties.space/api/auth/user', {
+    cy.intercept('GET', 'api/auth/user', {
       fixture: 'user.json',
     });
-    cy.intercept('GET', 'https://norma.nomoreparties.space/api/ingredients', {
+    cy.intercept('GET', 'api/ingredients', {
       fixture: 'ingredients.json',
     });
-    cy.intercept('POST', 'https://norma.nomoreparties.space/api/orders', {
+    cy.intercept('POST', 'api/orders', {
       fixture: 'order.json',
     }).as('postOrder');
 
-    // Устанавливаем токены:
     window.localStorage.setItem('refreshToken', JSON.stringify('test-refreshToken'));
-    cy.setCookie('accessToken', 'test-accessToken');
+    window.localStorage.setItem('accessToken', JSON.stringify('test-accessToken'));
   });
-  it('should be available on localhost:3000', function () {
+  it('Проверка, что мы открыли главную страничку', function () {
     cy.visit('http://localhost:3000');
-  });
-  it('На начальной странице есть пункт Констурктор', function () {
     cy.contains('Конструктор');
   });
+  // it('Найдем и кликнем на элемент', function () {
+  //   cy.get('[data-testid=123]').contains('Великолепный бургер от JiK').should('exist');
+  // });
   // it('Работает переход на страницу ленты заказов', function () {
   //   cy.get('button').contains('Оформить заказ').click();
   //   cy.contains('Вход');
