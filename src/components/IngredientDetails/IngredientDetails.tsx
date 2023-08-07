@@ -17,20 +17,26 @@ const IngredientDetails = () => {
       <h3>{currentIngredient?.name ?? '-'}</h3>
       <ul className={styles.contentListInfo}>
         <li className={styles.contentListItem}>
-          <p>Калории,ккал</p>
-          <p>{currentIngredient?.calories ?? '-'}</p>
+          <p>
+            Калории,ккал <br></br>
+            {currentIngredient?.calories ?? '-'}
+          </p>
         </li>
         <li className={styles.contentListItem}>
-          <p>Белки,г</p>
-          <p>{currentIngredient?.proteins ?? '-'}</p>
+          <p>
+            Белки,г <br></br> {currentIngredient?.proteins ?? '-'}
+          </p>
         </li>
         <li className={styles.contentListItem}>
-          <p>Жиры,г</p>
-          <p>{currentIngredient?.fat ?? '-'}</p>
+          <p>
+            Жиры,г <br></br>
+            {currentIngredient?.fat ?? '-'}
+          </p>
         </li>
         <li className={styles.contentListItem}>
-          <p>Углеводы,г</p>
-          <p>{currentIngredient?.carbohydrates}</p>
+          <p>
+            Углеводы,г <br></br> {currentIngredient?.carbohydrates}
+          </p>
         </li>
       </ul>
     </div>

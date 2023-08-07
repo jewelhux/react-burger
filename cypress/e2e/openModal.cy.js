@@ -13,15 +13,23 @@ describe('Приложение корректно загрузилось', funct
     window.localStorage.setItem('refreshToken', JSON.stringify('test-refreshToken'));
     window.localStorage.setItem('accessToken', JSON.stringify('test-accessToken'));
   });
-  it('Проверка, что мы открыли главную страничку', function () {
+  it('Переход на главную страничку', function () {
     cy.visit('http://localhost:3000');
-    cy.contains('Конструктор');
   });
-  // it('Найдем и кликнем на элемент', function () {
-  //   cy.get('[data-testid=123]').contains('Великолепный бургер от JiK').should('exist');
-  // });
-  // it('Работает переход на страницу ленты заказов', function () {
-  //   cy.get('button').contains('Оформить заказ').click();
-  //   cy.contains('Вход');
-  // });
+  it('Найдем и кликнем на элемент краторной булочки и зароем окно через клик на внешнюю область', function () {
+    cy.contains('Краторная булка N-200i').click();
+    cy.contains('Калории,ккал 420');
+    cy.contains('Белки,г 80');
+    cy.contains('Жиры,г 24');
+    cy.contains('Углеводы,г 53');
+    cy.get('#overlayPopup').click({ force: true });
+  });
+  it('Ещё раз найдем и кликнем на элемент краторной булочки и зароем окно через клик на крестик модалки', function () {
+    cy.contains('Краторная булка N-200i').click();
+    cy.contains('Калории,ккал 420');
+    cy.contains('Белки,г 80');
+    cy.contains('Жиры,г 24');
+    cy.contains('Углеводы,г 53');
+    cy.get('[class*="Modal_closeButton"]').should('be.visible').click();
+  });
 });

@@ -6,7 +6,7 @@ interface IModalOverlayProps {
 }
 
 const ModalOverlay = ({ onClose }: IModalOverlayProps) => {
-  return <div className={styles.popup} onClick={onClose} />;
+  return <div id="overlayPopup" className={styles.popup} onClick={onClose} />;
 };
 
 export default ModalOverlay;
