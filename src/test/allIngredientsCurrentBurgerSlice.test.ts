@@ -4,7 +4,7 @@ import allIngredientsCurrentBurgerSlice, {
   initialState,
   moveIngredientsCurrentBurger,
   setBun,
-} from './allIngredientsCurrentBurgerSlice';
+} from '../services/slice/allIngredientsCurrentBurgerSlice';
 
 describe('allIngredientsCurrentBurger', () => {
   const MOCK_BUN = {

@@ -1,4 +1,4 @@
-import userSlice, { initialState, setAuthChecked, setUser } from './userSlice';
+import userSlice, { initialState, setAuthChecked, setUser } from '../services/slice/userSlice';
 
 describe('user', () => {
   const MOCK_DATA = {

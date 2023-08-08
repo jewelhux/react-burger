@@ -1,5 +1,8 @@
-import { IData } from '../../utils/interfaces';
-import currentIngredientSlice, { initialState, setIngredient } from './currentIngredientSlice';
+import { IData } from '../utils/interfaces';
+import currentIngredientSlice, {
+  initialState,
+  setIngredient,
+} from '../services/slice/currentIngredientSlice';
 
 describe('currentIngredient', () => {
   const MOCK_DATA: IData = {

@@ -1,4 +1,4 @@
-import allIngredientsSlice, { initialState, setError } from './allIngredientsSlice';
+import allIngredientsSlice, { initialState, setError } from '../services/slice/allIngredientsSlice';
 
 describe('allIngredients', () => {
   it('Добавление пустого значения', () => {

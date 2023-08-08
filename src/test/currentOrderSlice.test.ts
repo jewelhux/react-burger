@@ -1,4 +1,4 @@
-import currentOrderSlice, { initialState, setError } from './currentOrderSlice';
+import currentOrderSlice, { initialState, setError } from '../services/slice/currentOrderSlice';
 
 describe('currentOrder', () => {
   it('Добавление пустого значения', () => {
