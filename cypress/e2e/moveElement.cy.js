@@ -1,3 +1,5 @@
+import { LOCAL_HOST } from '../../src/utils/const';
+
 describe('Приложение корректно загрузилось', function () {
   beforeEach(() => {
     cy.intercept('GET', 'api/auth/user', {
@@ -14,7 +16,7 @@ describe('Приложение корректно загрузилось', funct
     window.localStorage.setItem('accessToken', JSON.stringify('test-accessToken'));
   });
   it('Переход на главную страничку', function () {
-    cy.visit('http://localhost:3000');
+    cy.visit(LOCAL_HOST);
   });
   it('Перетаскивание булочки', function () {
     cy.contains('Краторная булка N-200i').as('draggable');

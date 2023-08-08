@@ -1,11 +1,10 @@
-import { IData } from '../utils/interfaces';
 import currentIngredientSlice, {
   initialState,
   setIngredient,
 } from '../services/slice/currentIngredientSlice';
 
 describe('currentIngredient', () => {
-  const MOCK_DATA: IData = {
+  const MOCK_DATA = {
     _id: '643d69a5c3f7b9001cfa093c',
     name: 'Краторная булка N-200i',
     type: 'bun',

@@ -74,6 +74,9 @@ const DEFAULT_DATA: ISocketOrder = {
   updatedAt: '0',
 };
 
+const BTN_SELECTOR = `[class*="Modal_closeButton"]`;
+const LOCAL_HOST = 'http://localhost:3000/';
+
 export {
   DATA_ADRESS,
   OREDER_MOCK_DATA,
@@ -86,4 +89,6 @@ export {
   PROFILE_LINK,
   HEADER_LINK,
   DEFAULT_DATA,
+  BTN_SELECTOR,
+  LOCAL_HOST,
 };
