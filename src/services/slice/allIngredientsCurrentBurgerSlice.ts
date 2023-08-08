@@ -6,7 +6,7 @@ interface ISlice {
   ingredients: IExtData[];
 }
 
-const initialState: ISlice = {
+export const initialState: ISlice = {
   bun: null,
   ingredients: [],
 };

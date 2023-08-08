@@ -7,7 +7,7 @@ interface ISlice {
   isAuthChecked: boolean;
 }
 
-const initialState: ISlice = {
+export const initialState: ISlice = {
   user: null,
   isAuthChecked: false,
 };
