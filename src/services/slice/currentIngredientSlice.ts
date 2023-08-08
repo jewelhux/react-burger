@@ -6,7 +6,7 @@ interface ISlice {
   ingredient: IData | null;
 }
 
-const initialState: ISlice = {
+export const initialState: ISlice = {
   ingredient: null,
 };
 

@@ -9,7 +9,7 @@ interface ISlice {
   error: boolean | null;
 }
 
-const initialState: ISlice = {
+export const initialState: ISlice = {
   ingredients: [],
   loading: false,
   error: null,

@@ -10,7 +10,7 @@ interface ISlice {
   error: null | boolean;
 }
 
-const initialState: ISlice = {
+export const initialState: ISlice = {
   order: null,
   orderModal: null,
   loading: false,
